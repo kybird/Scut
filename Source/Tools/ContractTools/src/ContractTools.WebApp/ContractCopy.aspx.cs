@@ -125,17 +125,17 @@ namespace ContractTools.WebApp
             if (txtSlnID.Text.Trim() == ddlSolution.Text.Trim() &&
                 txtCopyID.Text.Trim() == ddContract.Text)
             {
-                Page.RegisterStartupScript("", "<script language=javascript>alert('不能复制至相同项目方案！')</script>");
+                Page.RegisterStartupScript("", "<script language=javascript>alert('같은솔루션에복사할수없음！')</script>");
                 return;
             }
 
             if (DbDataLoader.CopyContract(int.Parse(txtSlnID.Text), int.Parse(ddContract.Text), int.Parse(ddlSolution.Text), int.Parse(txtCopyID.Text)))
             {
-                Page.RegisterStartupScript("", "<script language=javascript>alert('复制成功！')</script>");
+                Page.RegisterStartupScript("", "<script language=javascript>alert('복사성공！')</script>");
             }
             else
             {
-                Page.RegisterStartupScript("", "<script language=javascript>alert('复制失败！')</script>");
+                Page.RegisterStartupScript("", "<script language=javascript>alert('복사실패！')</script>");
             }
         }
 

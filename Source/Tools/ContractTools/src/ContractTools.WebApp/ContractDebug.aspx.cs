@@ -127,7 +127,7 @@ namespace ContractTools.WebApp
                 bool includeParam = slnModel.IsDParam;
                 string query = NetHelper.GetSign(postParam, includeParam);
                 txtPostParam.Text = includeParam ? string.Format("?d={0}", query) : query;
-                dvResult.InnerHtml = "正在请求,请稍候...";
+                dvResult.InnerHtml = "요청중,잠시기다리세요...";
                 string sid;
                 string uid;
                 string st;
@@ -146,7 +146,7 @@ namespace ContractTools.WebApp
             }
             catch (Exception ex)
             {
-                dvResult.InnerHtml = string.Format("请求异常:{0}", ex.Message);
+                dvResult.InnerHtml = string.Format("요청예외:{0}", ex.Message);
                 TraceLog.WriteError("Contract debug error:{0}", ex);
             }
         }
@@ -245,12 +245,12 @@ namespace ContractTools.WebApp
                         }
                         else if (showType == 2) //json
                         {
-                            respContent.AppendLine("未实现此格式显示");
+                            respContent.AppendLine("이격식표시는 미구현");
                         }
                     }
                     else
                     {
-                        ResponseHead(contractId, respContent, ErrorCode, "请求超时");
+                        ResponseHead(contractId, respContent, ErrorCode, "요청만료");
                     }
                     break;
                 case 1: //json
@@ -276,10 +276,10 @@ namespace ContractTools.WebApp
             if (msg.ErrorCode < ErrorCode && msg.ErrorCode != 105 && msg.ErrorCode != 106)
             {
                 //消息体
-                respContent.AppendFormat("<h3>{0}-{1}</h3>", contractId, "返回结果");
+                respContent.AppendFormat("<h3>{0}-{1}</h3>", contractId, "요청결과");
                 respContent.Append("<table style=\"width:99%; border-color:#f0f0f0\" border=\"1\" cellpadding=\"3\" cellspacing=\"0\">");
-                respContent.Append("<tr><td style=\"width:15%;\"><strong>参数</strong></td><td style=\"width:10%;\"><strong>类型</strong></td>");
-                respContent.Append("<td style=\"width:75%;\"><strong>参数值</strong></td></tr>");
+                respContent.Append("<tr><td style=\"width:15%;\"><strong>파라메터</strong></td><td style=\"width:10%;\"><strong>유형</strong></td>");
+                respContent.Append("<td style=\"width:75%;\"><strong>파라메터값</strong></td></tr>");
                 int loopDepth = 0;//循环深度
                 List<ParamInfoModel> recordQueue = new List<ParamInfoModel>();
                 #region 循环体
@@ -353,7 +353,7 @@ namespace ContractTools.WebApp
         private static void ResponseHead(int contractId, StringBuilder respContent, int errorCode, string errorInfo, string st = "")
         {
             //头部消息
-            respContent.AppendFormat("<h3>{0}-{1}</h3>", contractId, "返回头部消息");
+            respContent.AppendFormat("<h3>{0}-{1}</h3>", contractId, "응답헤더정보");
             respContent.Append("<table style=\"width:99%; border-color:#f0f0f0\" border=\"1\" cellpadding=\"3\" cellspacing=\"0\">");
             respContent.Append("<tr><td style=\"width:25%;\"><strong>时间缀</strong></td>");
             respContent.Append("<td style=\"width:25%;\"><strong>状态值</strong></td>");
@@ -389,10 +389,10 @@ namespace ContractTools.WebApp
             respContent.AppendLine("</tr>");
 
             respContent.AppendLine("<tr><td colspan=\"3\" align=\"center\">");
-            respContent.Append("<!--子表开始--><table style=\"width:98%; border-color:#f0f0f0\" border=\"1\" cellpadding=\"2\" cellspacing=\"0\">");
+            respContent.Append("<!--Sub Table Start--><table style=\"width:98%; border-color:#f0f0f0\" border=\"1\" cellpadding=\"2\" cellspacing=\"0\">");
             if (recordCount == 0)
             {
-                builderContent.AppendLine("<tr><td align=\"center\">空数据</td></tr>");
+                builderContent.AppendLine("<tr><td align=\"center\">공백데이터</td></tr>");
             }
 
 
@@ -405,8 +405,8 @@ namespace ContractTools.WebApp
                     int loopDepth = 0; //循环深度
                     List<ParamInfoModel> recordQueue = new List<ParamInfoModel>();
 
-                    headContent.Append("<tr><!--头开始tr-->");
-                    builderContent.Append("<tr><!--内容开始tr-->");
+                    headContent.Append("<tr><!--헤더시작tr-->");
+                    builderContent.Append("<tr><!--내용시작tr-->");
                     int columnNum = 0;
 
                     #region
@@ -434,7 +434,7 @@ namespace ContractTools.WebApp
                                 //处理循环记录
                                 ProcessLoopRocord(builderContent, recordQueue, msgReader);
 
-                                builderContent.AppendLine("</table><!--子表结束-->");
+                                builderContent.AppendLine("</table><!--End SubTable-->");
                                 builderContent.Append("</td>");
                                 recordQueue.Clear();
                             }
@@ -466,21 +466,21 @@ namespace ContractTools.WebApp
                         }
                         catch (Exception ex)
                         {
-                            builderContent.AppendFormat("<td align=\"center\">{0}列出错{1}</td>", fieldName, ex.Message);
+                            builderContent.AppendFormat("<td align=\"center\">{0}행오류{1}</td>", fieldName, ex.Message);
                         }
 
                     }
 
                     #endregion
 
-                    headContent.AppendLine("</tr><!--头结束tr-->");
-                    builderContent.AppendLine("</tr><!--内容结束tr-->");
+                    headContent.AppendLine("</tr><!--헤더끝tr-->");
+                    builderContent.AppendLine("</tr><!--내용끝tr-->");
                     //读取行结束
                     reader.RecordEnd();
                 }
                 catch (Exception ex)
                 {
-                    builderContent.AppendFormat("<tr><td align=\"left\" style=\"color:red;\">{0}行出错{1}</td></tr>", (i + 1), ex.Message);
+                    builderContent.AppendFormat("<tr><td align=\"left\" style=\"color:red;\">{0}열오류{1}</td></tr>", (i + 1), ex.Message);
                     builderContent.AppendLine();
                     break; //读流出错，直接退出
                 }
@@ -488,7 +488,7 @@ namespace ContractTools.WebApp
 
             respContent.AppendLine(headContent.ToString());
             respContent.AppendLine(builderContent.ToString());
-            respContent.AppendLine("</table><!--子表结束-->");
+            respContent.AppendLine("</table><!--End SubTable-->");
             respContent.AppendLine("</td></tr>");
             respContent.Append("<tr>");
             respContent.Append("<td colspan=\"3\" align=\"left\">End</td>");

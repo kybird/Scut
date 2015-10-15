@@ -47,7 +47,7 @@ namespace ContractTools.WebApp
             }
             catch (Exception ex)
             {
-                Page.RegisterStartupScript("", "<script language=javascript>alert('添加失败,填写重复！')</script>");
+                Page.RegisterStartupScript("", "<script language=javascript>alert('추가실패,중복임！')</script>");
             }
         }
 
@@ -104,7 +104,7 @@ namespace ContractTools.WebApp
 
             catch (Exception erro)
             {
-                Response.Write("错误信息:" + erro.Message);
+                Response.Write("에러정보:" + erro.Message);
             }
         }
 
@@ -123,7 +123,7 @@ namespace ContractTools.WebApp
 
             catch (Exception erro)
             {
-                Response.Write("错误信息:" + erro.Message);
+                Response.Write("에러정보:" + erro.Message);
             }
         }
 

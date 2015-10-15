@@ -447,7 +447,7 @@ namespace ContractTools.WebApp.Base
 
                     string tempTableVar = subTableVar;
                     
-                    indexList[depth] = 0;//子层级编号重置
+                    indexList[depth] = 0;// 하위등급번호재취득 子层级编号重置
                     depth--;
                     if (depth > 0)
                     {
@@ -1350,7 +1350,7 @@ namespace ContractTools.WebApp.Base
                             BuildMemberCode(classMemberBuilder, GetSpaceIndent(2, 1), paramInfo, true);
                             continue;
                         }
-                        //放到主结构体
+                        //주구조체에 넣음
                         if (paramInfo.ParamType == 2)
                         {
                             BuildMemberCode(respPacketBuilder, spaceString, paramInfo, true);
@@ -1381,7 +1381,7 @@ namespace ContractTools.WebApp.Base
                     fieldBuilder.Append(space);
                     fieldBuilder.AppendLine("/// <summary>");
                     fieldBuilder.Append(space);
-                    fieldBuilder.AppendLine("/// 响应数据包");
+                    fieldBuilder.AppendLine("/// 상응데이터패키지");
                     fieldBuilder.Append(space);
                     fieldBuilder.AppendLine("/// </summary>");
                     fieldBuilder.Append(space);

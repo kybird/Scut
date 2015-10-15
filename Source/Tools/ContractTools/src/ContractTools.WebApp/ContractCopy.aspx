@@ -8,7 +8,7 @@
              <table class="table" style="width: 100%; text-align: center; background: #f0f0f0;padding: 15px 5px;">
                 <tr>
                     <td style="text-align: right; width: 40%">
-                        当前项目
+                        현재프로젝트
                     </td>
                     <td style="text-align: left;">
                         <asp:Label ID="lblSlnName" runat="server" Style="text-decoration: underline;font-weight: bold;" />
@@ -18,7 +18,7 @@
                 </tr>
                 <tr>
                     <td style="text-align: right;">
-                        协议编号
+                        패킷ID
                     </td>
                     <td style="text-align: left;">
                         <asp:DropDownList ID="ddContract" runat="server" Width="260px" 
@@ -28,7 +28,7 @@
                 </tr>
                 <tr>
                     <td style="text-align: right;">
-                        复制到项目
+                        프로젝트로복사
                     </td>
                     <td style="text-align: left;">
                         <asp:DropDownList ID="ddlSolution" runat="server" Width="260px" AutoPostBack="True">
@@ -37,17 +37,17 @@
                 </tr>
                 <tr>
                     <td style="text-align: right;">
-                        新协议编号
+                        새패킷ID
                     </td>
                     <td style="text-align: left;">
                         <asp:TextBox ID="txtCopyID" runat="server" Width="260px"></asp:TextBox>
                         <span style="padding: 0 10px"></span>
-                        <asp:Button ID="btnRefesh" runat="server" Text="刷新" OnClick="btnRefesh_Click" CssClass="btn"/>
+                        <asp:Button ID="btnRefesh" runat="server" Text="Refresh" OnClick="btnRefesh_Click" CssClass="btn"/>
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align: right;">
-                        新增到位置
+                        위치에새로추가
                     </td>
                     <td style="text-align: left;">
                         <asp:DropDownList ID="ddResponseParams" runat="server" Width="260px"></asp:DropDownList>
@@ -55,18 +55,18 @@
                 </tr>
                 <tr><td>&nbsp;</td>
                     <td style="text-align: left;padding-top: 15px;">
-                        <asp:Button ID="butSubmit" runat="server" Text="复制协议" OnClick="butSubmit_Click" CssClass="btn"/>
+                        <asp:Button ID="butSubmit" runat="server" Text="프로토콜복제" OnClick="butSubmit_Click" CssClass="btn"/>
                         <span style="padding: 0 10px"></span>
-                        <asp:Button ID="btnCopyParam" runat="server" Text="复制参数" OnClick="btnCopyParam_Click" CssClass="btn"/>
+                        <asp:Button ID="btnCopyParam" runat="server" Text="파라메터복제" OnClick="btnCopyParam_Click" CssClass="btn"/>
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align: right">
-                        <span>复制参数从位置</span>
+                        <span>위치로부터파라메터복사해서</span>
                     </td>
                     <td  style="text-align: left;">
                         <asp:DropDownList ID="ddParamCopyFrom" runat="server" Width="120px"></asp:DropDownList>
-                        <span>到</span>
+                        <span>=></span>
                         <asp:DropDownList ID="ddParamCopyTo" runat="server" Width="120px"></asp:DropDownList>
                     </td>
                 </tr>

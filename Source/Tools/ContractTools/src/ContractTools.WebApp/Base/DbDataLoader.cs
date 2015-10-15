@@ -540,7 +540,7 @@ namespace ContractTools.WebApp.Base
             }
             else
             {
-                throw new ArgumentException("参数异常");
+                throw new ArgumentException("파라메터오류");
             }
             command.Parser();
             _dbBaseProvider.ExecuteQuery(CommandType.Text, command.Sql, command.Parameters);

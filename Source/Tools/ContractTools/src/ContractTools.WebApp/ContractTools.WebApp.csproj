@@ -212,6 +212,9 @@
   <ItemGroup>
     <Folder Include="Base\Code\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\패킷생성기.pubxml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

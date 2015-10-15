@@ -81,12 +81,12 @@ namespace ContractTools.WebApp
 
                     if (ddlAgreement.Items.Count == 0)
                     {
-                        ddlAgreement.Items.Add(new ListItem("选择类别", "0"));
+                        ddlAgreement.Items.Add(new ListItem("분류선택", "0"));
                     }
 
 
                     var versiontList = DbDataLoader.GetVersion(slnId);
-                    versiontList.Insert(0, new VersionMode() { ID = 0, SlnID = slnId, Title = "选择版本" });
+                    versiontList.Insert(0, new VersionMode() { ID = 0, SlnID = slnId, Title = "버전선택" });
                     ddVersion.DataSource = versiontList;
                     ddVersion.DataTextField = "Title";
                     ddVersion.DataValueField = "ID";
@@ -140,7 +140,7 @@ namespace ContractTools.WebApp
             }
             catch (Exception ex)
             {
-                Page.RegisterStartupScript("", "<script language=javascript>alert('添加失败,填写重复！')</script>");
+                Page.RegisterStartupScript("", "<script language=javascript>alert('추가실패,중복임！')</script>");
             }
         }
 
@@ -151,12 +151,12 @@ namespace ContractTools.WebApp
                 var contractModel = new ContractModel() { ID = txtID.Text.ToInt(), SlnID = SlnID };
                 if (DbDataLoader.Delete(contractModel))
                 {
-                    Response.Write("<script language=javascript>alert('删除成功！')</script>");
+                    Response.Write("<script language=javascript>alert('삭제성공！')</script>");
                     Response.Redirect("Default.aspx?edit=true");
                 }
                 else
                 {
-                    Response.Write("<script language=javascript>alert('删除失败！')</script>");
+                    Response.Write("<script language=javascript>alert('삭제실패！')</script>");
                 }
 
             }

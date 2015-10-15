@@ -17,7 +17,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align: right">项目命名空间
+                    <td style="text-align: right">프로젝트 네임스페이스
                     </td>
                     <td style="text-align: left">
                         <asp:TextBox ID="txtNamespace" runat="server" Width="385px"></asp:TextBox>
@@ -69,7 +69,7 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td style="text-align: left; padding-top: 15px;">
-                        <asp:Button ID="butSubmit" runat="server" Text="提交" OnClick="butSubmit_Click" CssClass="btn" />
+                        <asp:Button ID="butSubmit" runat="server" Text="제출" OnClick="butSubmit_Click"  CssClass="btn"/>
                     </td>
                 </tr>
                 <tr>
@@ -88,7 +88,7 @@
                                     </ItemTemplate>
                                     <ItemStyle Width="5%"></ItemStyle>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="项目方案" ItemStyle-Width="10%">
+                                <asp:TemplateField HeaderText="프로젝트솔루션" ItemStyle-Width="10%">
                                     <EditItemTemplate>
                                         <asp:TextBox ID="SlnName" runat="server" Text='<%# Bind("SlnName") %>'  Width="99%"></asp:TextBox>
                                     </EditItemTemplate>
@@ -97,7 +97,7 @@
                                     </ItemTemplate>
                                     <ItemStyle Width="10%"></ItemStyle>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="游戏ID" ItemStyle-Width="5%">
+                                <asp:TemplateField HeaderText="게임ID" ItemStyle-Width="5%">
                                     <EditItemTemplate>
                                         <asp:TextBox ID="gameid" runat="server" Text='<%# Bind("gameid") %>' Width="99%"></asp:TextBox>
                                     </EditItemTemplate>
@@ -106,7 +106,7 @@
                                     </ItemTemplate>
                                     <ItemStyle Width="5%"></ItemStyle>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="调试地址" ItemStyle-Width="10%">
+                                <asp:TemplateField HeaderText="디버깅주소" ItemStyle-Width="10%">
                                     <EditItemTemplate>
                                         <asp:TextBox ID="Url" runat="server" Text='<%# Bind("Url") %>' Width="99%"></asp:TextBox>
                                     </EditItemTemplate>
@@ -116,7 +116,7 @@
                                     <ItemStyle Width="10%"></ItemStyle>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="命名空间" ItemStyle-Width="10%">
+                                <asp:TemplateField HeaderText="네임스페이스" ItemStyle-Width="10%">
                                     <EditItemTemplate>
                                         <asp:TextBox ID="Namespace" runat="server" Text='<%# Bind("Namespace") %>' Width="99%"></asp:TextBox>
                                     </EditItemTemplate>
@@ -149,7 +149,7 @@
                                     </ItemTemplate>
                                     <ItemStyle Width="10%"></ItemStyle>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="客户端使用脚本" ItemStyle-Width="10%">
+                                <asp:TemplateField HeaderText="클라이언트스크립트사용" ItemStyle-Width="10%">
                                     <EditItemTemplate>
                                         <asp:DropDownList ID="CliUseScript" runat="server" Width="99%" Text='<%# Bind("CliUseScript") %>'>
                                             <asp:ListItem Value=""></asp:ListItem>
@@ -164,7 +164,7 @@
                                     <ItemStyle Width="10%"></ItemStyle>
                                 </asp:TemplateField>
                                 
-                                <asp:TemplateField HeaderText="请求响应内容类型" ItemStyle-Width="10%">
+                                <asp:TemplateField HeaderText="요청상응내용유형" ItemStyle-Width="10%">
                                     <EditItemTemplate>
                                         <asp:DropDownList ID="RespContentType" runat="server" Text='<%# Bind("RespContentType") %>' Width="99%">
                                             <asp:ListItem Value="0">Stream</asp:ListItem>
@@ -177,7 +177,7 @@
                                     <ItemStyle Width="10%"></ItemStyle>
                                 </asp:TemplateField>
                                 
-                                <asp:TemplateField HeaderText="请求包含d参数" ItemStyle-Width="8%">
+                                <asp:TemplateField HeaderText="d파라메터를포함한요청" ItemStyle-Width="8%">
                                     <EditItemTemplate>
                                         <asp:CheckBox ID="IsDParam" runat="server" Checked='<%# Bind("IsDParam") %>'></asp:CheckBox>
                                     </EditItemTemplate>

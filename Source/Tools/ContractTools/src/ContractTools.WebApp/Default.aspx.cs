@@ -428,7 +428,7 @@ namespace ContractTools.WebApp
                         }
                         else
                         {
-                            sb.Append(string.Format("<a href='#' onmouseover='ShowPrompt(event, \"{1}\")'>{0}</a>", innertext, "暂无此枚举信息"));
+                            sb.Append(string.Format("<a href='#' onmouseover='ShowPrompt(event, \"{1}\")'>{0}</a>", innertext, "열거자정보가없음"));
                         }
                     }
                     else
@@ -566,7 +566,7 @@ namespace ContractTools.WebApp
             catch (Exception erro)
             {
                 TraceLog.WriteError("RowUpdating:{0}", erro);
-                Response.Write("错误信息:" + erro.Message);
+                Response.Write("에러정보:" + erro.Message);
             }
 
         }
@@ -796,11 +796,11 @@ namespace ContractTools.WebApp
             int id = Convert.ToInt32(e.CommandArgument.ToString());
             if (DbDataLoader.Delete(new ParamInfoModel() { ID = id }))
             {
-                Alert("删除成功！", GetUrl());
+                Alert("삭제성공！", GetUrl());
             }
             else
             {
-                Alert("删除失败！", GetUrl());
+                Alert("삭제실패！", GetUrl());
             }
             BindResult();
         }
@@ -942,7 +942,7 @@ namespace ContractTools.WebApp
                 }
                 else
                 {
-                    Alert("增加失败！", GetUrl());
+                    Alert("추가실패！", GetUrl());
                 }
             }
             catch (Exception ex)

@@ -87,7 +87,7 @@ namespace ContractTools.WebApp
                 }
                 catch (Exception ex)
                 {
-                    Page.RegisterStartupScript("", "<script language=javascript>alert('添加失败！')</script>");
+                    Page.RegisterStartupScript("", "<script language=javascript>alert('추가실패！')</script>");
                 }
             }
             else
@@ -110,7 +110,7 @@ namespace ContractTools.WebApp
                 }
                 catch (Exception ex)
                 {
-                    Page.RegisterStartupScript("", "<script language=javascript>alert('编辑失败！')</script>");
+                    Page.RegisterStartupScript("", "<script language=javascript>alert('편집실패！')</script>");
                 }
             }
         }
@@ -121,13 +121,13 @@ namespace ContractTools.WebApp
         {
             if (IsEdit)
             {
-                btAddEnum.Text = "编辑";
+                btAddEnum.Text = "편집";
                 btCancelButton.Visible = true;
                 txtName.ReadOnly = true;
             }
             else
             {
-                btAddEnum.Text = "增加";
+                btAddEnum.Text = "추가";
                 btCancelButton.Visible = false;
                 txtName.ReadOnly = false;
             }

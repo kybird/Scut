@@ -17,21 +17,21 @@
                 </tr>
                 <tr>
                     <td style="width: 40%; text-align: right;">
-                        枚举名称</td>
+                        열거자명</td>
                     <td style="text-align: left;">
                         <asp:TextBox ID="txtName" runat="server" Width="160px"></asp:TextBox>
                         <strong style="color: Red">*</strong></td>
                 </tr>
                 <tr>
                     <td style="text-align: right;">
-                        枚举说明</td>
+                        열거자설명</td>
                     <td style="text-align: left;">
                         <asp:TextBox ID="txtDescription" runat="server" Width="160px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td style="text-align: right;">
-                        枚举项
+                        열거자항
                     </td>
                     <td style="text-align: left;">
                         <asp:TextBox ID="txtValueInfo" runat="server" Height="131px" TextMode="MultiLine"
@@ -42,8 +42,8 @@
                     <td colspan="2">
                         <asp:Literal ID="EditKey" runat="server" Visible="False"></asp:Literal>
                        
-                        <asp:Button ID="btAddEnum" runat="server" Text="增加" OnClick="butSubmit_Click" CssClass="btn"/>
-                    &nbsp;&nbsp;<asp:Button ID="btCancelButton" runat="server" Text="取消" 
+                        <asp:Button ID="btAddEnum" runat="server" Text="추가" OnClick="butSubmit_Click" CssClass="btn"/>
+                    &nbsp;&nbsp;<asp:Button ID="btCancelButton" runat="server" Text="취소" 
                             OnClick="btCancelButton_Click" CssClass="btn"/>
                     </td>
                 </tr>
@@ -52,21 +52,21 @@
                         <asp:GridView ID="GridView" runat="server" AutoGenerateColumns="False" Width="100%" CssClass="grid" 
                             DataKeyNames="id" onrowcommand="GridView_RowCommand" >
                             <Columns>
-                                <asp:BoundField DataField="enumName" HeaderText="名称">
+                                <asp:BoundField DataField="enumName" HeaderText="명칭">
                                 <ControlStyle Width="5%" />
                                 </asp:BoundField>
-                                <asp:BoundField DataField="enumDescription" HeaderText="枚举说明" />
-                                <asp:TemplateField HeaderText="选择" ShowHeader="False">
+                                <asp:BoundField DataField="enumDescription" HeaderText="설명" />
+                                <asp:TemplateField HeaderText="선택" ShowHeader="False">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="false" 
-                                            CommandName="sel" Text="选择"  CommandArgument='<%# Eval("id") %>'></asp:LinkButton>
+                                            CommandName="sel" Text="선택"  CommandArgument='<%# Eval("id") %>'></asp:LinkButton>
                                     </ItemTemplate>
                                     <ControlStyle Width="30px" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="删除" ShowHeader="False">
+                                <asp:TemplateField HeaderText="삭제" ShowHeader="False">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="false" 
-                                            CommandName="del"  CommandArgument='<%# Eval("id") %>'  Text="删除"  OnClientClick="return confirm('是否删除')"></asp:LinkButton>
+                                            CommandName="del"  CommandArgument='<%# Eval("id") %>'  Text="삭제"  OnClientClick="return confirm('삭제할까요')"></asp:LinkButton>
                                     </ItemTemplate>
                                     <ControlStyle Width="30px" />
                                 </asp:TemplateField>
