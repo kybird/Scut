@@ -173,6 +173,9 @@ namespace ZyGames.Framework.Game.Runtime
 
             TraceLog.WriteLine("{0} Server is starting...", DateTime.Now.ToString("HH:mm:ss"));
             _setting = setting;
+
+            // Below should be failed under Microsoft hostednetwork enabled [ SHARE WIFI ON COMPUTER ]
+            /*
             if (!RedisConnectionPool.Ping("127.0.0.1"))
             {
                 string error = string.Format("Error: NIC is not connected or no network.");
@@ -180,6 +183,8 @@ namespace ZyGames.Framework.Game.Runtime
                 TraceLog.WriteError(error);
                 return;
             }
+            */
+
             RedisConnectionPool.Initialize(_setting.Serializer);
             if (!RedisConnectionPool.CheckConnect())
             {
