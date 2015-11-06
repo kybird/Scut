@@ -41,7 +41,8 @@ namespace ZyGames.Framework.Game.Configuration
         channelTencent,
         channelFeiliu,
         channelMeiZu,
-        channelND
+        channelND,
+        channelLG,
     }
     /// <summary>
     /// 娓告垙娓犻亾瀵硅薄
@@ -88,6 +89,10 @@ namespace ZyGames.Framework.Game.Configuration
                     Url = "http://oauth.anysdk.com/api/User/LoginOauth/";
                     break;
                 case ChannelType.channelTencent:
+                    break;
+                case ChannelType.channelLG:
+                    // 라인은 클라이언트에서 URL 을알려줌 기본으로 설정해주는것도 좋겠지
+                    Url = " http://proxy-sdbx.line-alpha.me:10080";
                     break;
                 default:
                     break;

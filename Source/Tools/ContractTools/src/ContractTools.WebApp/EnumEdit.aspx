@@ -10,7 +10,7 @@
                     <td colspan="2">
                         <strong style="color: Red">
                        
-                        <asp:Button ID="btRefreshCache" runat="server" Text="刷新缓存" 
+                        <asp:Button ID="btRefreshCache" runat="server" Text="캐쉬새로고침" 
                             OnClick="btRefreshCache_Click" CssClass="btn"/>
                         </strong>
                     </td>

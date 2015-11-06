@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>协议工具平台</title>
+    <title>프로토콜도구플랫폼</title>
     <link href="skin.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -15,14 +15,14 @@
     <div class="layout">
 		<div class="topbar">
 		    <ul>
-		        <li><a href="Default.aspx?edit=true">项目主页</a></li>
-		        <li><asp:HyperLink ID="hlSolution" runat="server" Target="_top">项目管理</asp:HyperLink></li>
-		        <li><asp:HyperLink ID="hlVersion" runat="server" Target="_top">版本管理</asp:HyperLink></li>
-		        <li><asp:HyperLink ID="hlEnum" runat="server" Target="_top">枚举管理</asp:HyperLink></li>
-		        <li><asp:HyperLink ID="hlAgreement" runat="server" Target="_top">类别管理</asp:HyperLink></li>
-		        <li><asp:HyperLink ID="hlContract" runat="server" Target="_top">新增协议</asp:HyperLink></li>
-		        <li><asp:HyperLink ID="hlContractEdit" runat="server" Target="_top">编辑协议</asp:HyperLink></li>
-		        <li><asp:HyperLink ID="hlContractCopy" runat="server" Target="_top">Copy协议</asp:HyperLink></li>
+		        <li><a href="Default.aspx?edit=true">Proj.Main</a></li>
+		        <li><asp:HyperLink ID="hlSolution" runat="server" Target="_top">Proj.Man</asp:HyperLink></li>
+		        <li><asp:HyperLink ID="hlVersion" runat="server" Target="_top">Vers.Man</asp:HyperLink></li>
+		        <li><asp:HyperLink ID="hlEnum" runat="server" Target="_top">Enum.Man</asp:HyperLink></li>
+		        <li><asp:HyperLink ID="hlAgreement" runat="server" Target="_top">Class.Man</asp:HyperLink></li>
+		        <li><asp:HyperLink ID="hlContract" runat="server" Target="_top">NewProtocol</asp:HyperLink></li>
+		        <li><asp:HyperLink ID="hlContractEdit" runat="server" Target="_top">EditProtocol</asp:HyperLink></li>
+		        <li><asp:HyperLink ID="hlContractCopy" runat="server" Target="_top">CopyProtocol</asp:HyperLink></li>
 		    </ul>
 		</div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

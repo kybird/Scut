@@ -7,11 +7,11 @@
         <div class="content">
             <table style="width: 100%; text-align: center; background: #f0f0f0; padding: 15px 5px;">
                 <tr>
-                    <td style="text-align: right; width: 40%">项目名称
+                    <td style="text-align: right; width: 40%">ProjectName
                     </td>
                     <td style="text-align: left">
                         <asp:TextBox ID="txtDescption" runat="server" Width="120px"></asp:TextBox>
-                        <span style="text-align: right; padding: 0 5px 0 70px;">游戏ID</span>
+                        <span style="text-align: right; padding: 0 5px 0 70px;">GameID</span>
                         <asp:TextBox ID="txtGameID" runat="server" Width="120px"></asp:TextBox>
                         <strong style="color: Red">*</strong>
                     </td>
@@ -24,14 +24,14 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align: right">调试地址
+                    <td style="text-align: right">DebugAddress
                     </td>
                     <td style="text-align: left">
                         <asp:TextBox ID="txtUrl" runat="server" Width="385px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align: right">命名空间引用
+                    <td style="text-align: right">using namespace
                     </td>
                     <td style="text-align: left">
                         <asp:TextBox ID="txtRefNamespace" runat="server" Width="387px" Height="50px"
@@ -39,7 +39,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align: right;">服务端使用脚本
+                    <td style="text-align: right;">ServerScript
                     </td>
                     <td style="text-align: left;">
                         <asp:DropDownList ID="ddSerUseScript" runat="server" Width="120">
@@ -47,7 +47,7 @@
                             <asp:ListItem Value="Python"></asp:ListItem>
                             <asp:ListItem Value="Lua"></asp:ListItem>
                         </asp:DropDownList>
-                        <span style="text-align: right; padding: 0 5px 0 25px;">客户端使用脚本</span>
+                        <span style="text-align: right; padding: 0 5px 0 25px;">ClientScript</span>
                         <asp:DropDownList ID="ddCliUseScript" runat="server">
                             <asp:ListItem Value="Lua">Cocos2d-x of Lua</asp:ListItem>
                             <asp:ListItem Value="Quick" Selected="True">Quick</asp:ListItem>
@@ -56,14 +56,14 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align: right">请求响应内容类型</td>
+                    <td style="text-align: right">RRContentType</td>
                     <td style="text-align: left">
                         <asp:DropDownList ID="ddResponseContentType" runat="server" Width="120">
                             <asp:ListItem Value="0">Stream</asp:ListItem>
                             <asp:ListItem Value="1">Json</asp:ListItem>
                         </asp:DropDownList>
                         <span style="text-align: right; padding: 0 5px 0 25px;">
-                            <asp:CheckBox ID="ckIsDParam" runat="server" Checked="True" Text="请求包含d参数" /></span>
+                            <asp:CheckBox ID="ckIsDParam" runat="server" Checked="True" Text="include d parameter" /></span>
                     </td>
                 </tr>
                 <tr>
@@ -125,7 +125,7 @@
                                     </ItemTemplate>
                                     <ItemStyle Width="10%"></ItemStyle>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="命名空间引用" ItemStyle-Width="10%">
+                                <asp:TemplateField HeaderText="using namespace" ItemStyle-Width="10%">
                                     <EditItemTemplate>
                                         <asp:TextBox ID="RefNamespace" runat="server" TextMode="MultiLine" Text='<%# Bind("RefNamespace") %>' Width="99%" Height="50"></asp:TextBox>
                                     </EditItemTemplate>
@@ -135,7 +135,7 @@
                                     <ItemStyle Width="10%"></ItemStyle>
                                 </asp:TemplateField>
                                 
-                                <asp:TemplateField HeaderText="服务端使用脚本" ItemStyle-Width="10%">
+                                <asp:TemplateField HeaderText="Server Script" ItemStyle-Width="10%">
                                     <EditItemTemplate>
                                         <asp:DropDownList ID="SerUseScript" runat="server" Width="99%" Text='<%# Bind("SerUseScript") %>'>
                                             <asp:ListItem Value=""></asp:ListItem>
