@@ -194,7 +194,7 @@ namespace ZyGames.Framework.Data
             {
                 if (string.IsNullOrEmpty(CharSet))
                 {
-                    CharSet = "gbk";
+                    CharSet = "utf8";
                     string charset = string.Format("CharSet={0};", CharSet);
                     ConnectionString += ConnectionString.EndsWith(";") ? charset : ";" + charset;
                 }

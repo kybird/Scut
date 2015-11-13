@@ -38,6 +38,7 @@ namespace AccountServer.Handler
         {
             int userId;
             var passportId = string.Empty;
+            RegType type = RegType.Other;
             if( !string.IsNullOrEmpty(data.RetailUser) && !string.IsNullOrEmpty(data.RetailToken))
             {
                 ILogin login = LoginProxy.GetLogin(data.RetailID, data);
@@ -70,7 +71,9 @@ namespace AccountServer.Handler
                 }
                 data.Pwd = DecodePassword(data.Pwd);
                 //快速登录
-                userId = SnsManager.LoginByDevice(data.Pid, data.Pwd, data.DeviceID, data.IsCustom);
+                
+                userId = SnsManager.LoginByDevice(data.Pid, data.Pwd, data.DeviceID, out type, data.IsCustom);
+                //userId = SnsManager.LoginByDevice(data.Pid, data.Pwd, data.DeviceID, data.IsCustom);
                 if (userId <= 0)
                 {
                     throw new HandlerException(StateCode.PassworkError, StateDescription.PassworkError);
@@ -78,7 +81,7 @@ namespace AccountServer.Handler
                 passportId = data.Pid;
             }
 
-            return AuthorizeLogin(userId, passportId);
+            return AuthorizeLogin(userId, passportId, type);
         }
 
     }

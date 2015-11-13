@@ -45,7 +45,7 @@ namespace AccountServer.Handler
             {
                 throw new HandlerException(StateCode.Error, StateDescription.RegistError);
             }
-            return AuthorizeLogin(userId, data.Pid);
+            return AuthorizeLogin(userId, data.Pid, RegType.Guest);
         }
 
     }

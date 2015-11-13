@@ -27,6 +27,8 @@ using AccountServer.Handler.Data;
 using ZyGames.Framework.Common.Log;
 using ZyGames.Framework.Common.Security;
 using ZyGames.Framework.Game.Sns.Service;
+using ZyGames.Framework.Game.Sns;
+
 
 namespace AccountServer.Handler
 {
@@ -79,21 +81,23 @@ namespace AccountServer.Handler
         /// <param name="userId"></param>
         /// <param name="passportId"></param>
         /// <returns></returns>
-        protected ResponseData AuthorizeLogin(int userId, string passportId)
+        protected ResponseData AuthorizeLogin(int userId, string passportId, RegType type)
         {
             UserToken userToken = new UserToken()
             {
                 Token = GenrateToken(),
                 UserId = userId,
                 PassportId = passportId,
-                ExpireTime = DateTime.Now.AddDays(1)
+                ExpireTime = DateTime.Now.AddDays(1),
+                UserType = (int)type
             };
             HandlerManager.SaveToken(userToken.Token, userToken);
             return new LoginToken()
             {
                 Token = userToken.Token,
                 UserId = userToken.UserId,
-                PassportId = userToken.PassportId
+                PassportId = userToken.PassportId,
+                UserType = userToken.UserType
             };
         }
     }

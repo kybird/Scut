@@ -184,6 +184,7 @@ namespace ZyGames.Framework.Game.Sns
                 {
                     PassportID = token.PassportId;
                     UserID = token.UserId.ToString();
+                    UserType = token.UserType.ToInt();
                     return true;
                 }
             }
