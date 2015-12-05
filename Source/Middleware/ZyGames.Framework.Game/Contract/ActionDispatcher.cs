@@ -124,7 +124,7 @@ namespace ZyGames.Framework.Game.Contract
         {
             statusCode = (int)HttpStatusCode.OK;
             string data = "";
-            if (Environment.OSVersion.Platform == PlatformID.Unix)
+            /*if (Environment.OSVersion.Platform == PlatformID.Unix)
             {
                 //The RawUrl Get is exist "/xxx.aspx?d=" char on the platform of mono.
                 int index;
@@ -142,7 +142,7 @@ namespace ZyGames.Framework.Game.Contract
             else
             {
                 data = request.QueryString["d"];
-            }
+            }*/
             var packageReader = new PackageReader(data, request.InputStream, request.ContentEncoding);
             return TryBuildPackage(packageReader, out package);
         }
