@@ -8,7 +8,7 @@ namespace ##Namespace##
     /// <summary>
     /// ##Description##
     /// </summary>
-    /// <remarks>继续BaseStruct类:允许无身份认证的请求;AuthorizeAction:需要身份认证的请求</remarks>
+    /// <remarks>inherit from BaseStruct: allow non-autorize request;AuthorizeAction:need autorized request</remarks>
     public class Action##ID## : AuthorizeAction
     {
         ##Field##
@@ -20,7 +20,9 @@ namespace ##Namespace##
         }
 
         /// <summary>
-        /// 检查的Action是否需要授权访问
+        /// Check if Action need autorize action 
+		/// true by pass authorize test
+		/// false check the authorize
         /// </summary>
         protected override bool IgnoreActionId
         {
@@ -28,7 +30,7 @@ namespace ##Namespace##
         }
 
         /// <summary>
-        /// 客户端请求的参数较验
+        /// Process Client Request parameter
         /// </summary>
         /// <returns>false:中断后面的方式执行并返回Error</returns>
         public override bool GetUrlElement()
@@ -37,9 +39,9 @@ namespace ##Namespace##
         }
 
         /// <summary>
-        /// 业务逻辑处理
+        /// process logic
         /// </summary>
-        /// <returns>false:中断后面的方式执行并返回Error</returns>
+        /// <returns>false: stop following processing and return error</returns>
         public override bool TakeAction()
         {
             return true;
@@ -47,6 +49,7 @@ namespace ##Namespace##
 
         /// <summary>
         /// 下发给客户的包结构数据
+		/// Data strutcture as response for send to client
         /// </summary>
         public override void BuildPacket()
         {
