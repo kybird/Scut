@@ -4435,11 +4435,6 @@
             The type of the game.
             </summary>
         </member>
-        <member name="F:ZyGames.Framework.Game.Contract.Action.LoginAction.LoginProxy">
-            <summary>
-            The login proxy.
-            </summary>
-        </member>
         <member name="M:ZyGames.Framework.Game.Contract.Action.LoginAction.#ctor(System.Int16,ZyGames.Framework.Game.Service.ActionGetter)">
             <summary>
             Initializes a new instance of the <see cref="T:ZyGames.Framework.Game.Contract.Action.LoginAction"/> class.
@@ -7873,6 +7868,180 @@
             
             </summary>
         </member>
+        <member name="T:ZyGames.Framework.Game.Sns.LineGame.LGSDK">
+            <summary>
+            라인게임SDK
+            </summary>
+            <remarks>
+            Notice, Ranking, FriendList, Mail.
+            </remarks>
+        </member>
+        <member name="M:ZyGames.Framework.Game.Sns.LineGame.LGSDK.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="appID"></param>
+            <param name="countryCode"></param>
+            <param name="acceptLanguage"></param>
+            <param name="reqStr"></param>
+            <param name="proxyServer"></param>
+        </member>
+        <member name="M:ZyGames.Framework.Game.Sns.LineGame.LGSDK.httpPost(System.String,System.String,System.Text.Encoding)">
+            <summary>
+            Url 로 Http Request
+            </summary>
+            <param name="url"></param>
+            <param name="postData"></param>
+            <param name="encoding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZyGames.Framework.Game.Sns.LineGame.LGSDK.VerifyToken">
+            <summary>
+            클라이언트에서 받은 VerifyToken 검증
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZyGames.Framework.Game.Sns.LineGame.LGSDK.PutScore(System.Int32,System.Double)">
+            <summary>
+            라인서버에 랭킹정보를날린다
+            </summary>
+            <param name="factor"></param>
+            <param name="score"></param>
+        </member>
+        <member name="M:ZyGames.Framework.Game.Sns.LineGame.LGSDK.GetScores(System.Int32,System.Int32,System.Double,System.Int32,System.Int32)">
+            <summary>
+            친구랭킹 획득
+            score 가 왜들어가지.
+            </summary>
+            <param name="accessToken"> API 호출할때마다 클라이언트에서는 LINE 으로 부터 토큰값을 
+            받아서게임서버에 전달할 필요가 있습니다(토큰값이 변하나보다)</param>
+            <param name="factor">랭킹요소</param>
+            <param name="score">이번집계기간의 최고점수(왜?)</param>
+            <param name="start">취득 할 시작 순위</param>
+            <param name="count">취득 할 최대 갯수</param>
+        </member>
+        <member name="M:ZyGames.Framework.Game.Sns.LineGame.LGSDK.GetPrevScores(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="token"></param>
+            <param name="factor"></param>
+            <param name="start"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZyGames.Framework.Game.Sns.LineGame.LGSDK.GetDetailScore(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="factor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZyGames.Framework.Game.Sns.LineGame.LGSDK.GetMetaInfo(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="factor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZyGames.Framework.Game.Sns.LineGame.LGSDK.DeleteScore(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="factor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZyGames.Framework.Game.Sns.LineGame.LGSDK.GetTopMyScore(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="factor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ZyGames.Framework.Game.Sns.LineGame.LGSDK.GetTopScores(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="factor"></param>
+            <param name="start"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.LineGame.LGGetTopScoresRes">
+            <summary>
+            톱 랭킹리스트 취득 응답 JSON 규격
+            </summary>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.LineGame.LGTopScoresItem">
+            <summary>
+            톱 랭킹리스트 구성항목
+            </summary>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.LineGame.LGGetTopMyScoreRes">
+            <summary>
+            탑랭킹의 자신의 점수 취득
+            </summary>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.LineGame.LGTopMyScoreItem">
+            <summary>
+            나의 탑랭킹 점수
+            </summary>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.LineGame.LGDeleteScoreRes">
+            <summary>
+            랭킹항목삭제 결과
+            </summary>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.LineGame.LGRankMetaInfoRes">
+            <summary>
+            랭킹 서버 설정 내용
+            </summary>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.LineGame.LGScoreInfo">
+            <summary>
+            factor 의 랭킹서버 설정정보
+            </summary>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.LineGame.LGGetDetailScoreRes">
+            <summary>
+            랭킹상세정보 리스트
+            </summary>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.LineGame.LGDetailScoreItem">
+            <summary>
+            랭킹상세정보 아이템
+            </summary>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.LineGame.LGGetPrevScoresRes">
+            <summary>
+            친구의 이전랭킹 획득
+            </summary>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.LineGame.LGGetScoresRes">
+            <summary>
+            getScore API 웹서버 response
+            </summary>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.LineGame.LGScoreItem">
+            <summary>
+            getScore 로 받은 친구하나의 데이터
+            </summary>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.LineGame.LGPutScoreResponse">
+            <summary>
+            putScore API 웹서버의 응답
+            </summary>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.LineGame.LGInfo">
+            <summary>
+            VerifyToken API 웹서버의 응답
+            </summary>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.LineGame.LGData">
+             <summary>
+            
+             </summary>
+        </member>
         <member name="T:ZyGames.Framework.Game.Sns.LoginAnySdk">
             <summary>
             AnySDK
@@ -8219,6 +8388,35 @@
             Gets or sets the scope.
             </summary>
             <value>The scope.</value>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.LoginLG">
+            <summary>
+            91SDK 0001
+            </summary>
+        </member>
+        <member name="M:ZyGames.Framework.Game.Sns.LoginLG.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ZyGames.Framework.Game.Sns.LoginLG"/> class
+            </summary>
+            <param name="retailID"> 퍼블리셔 일련번호 </param>
+            <param name="countryCode"> 국가코드 </param>
+            <param name="acceptLanguage"> 언어코드 </param>
+            <param name="proxyServer"> 인증서버 주소</param>
+            <param name="reqStr"> verifyCode </param>
+            TODO: retailID 를 받지말고 그냥 하드코딩으로 간다.
+            중국에 들어갈때 통합하는 방법을 고려해보자. 1004 번패킷으로.
+        </member>
+        <member name="M:ZyGames.Framework.Game.Sns.LoginLG.GetRegPassport">
+            <summary>
+            등록한 통행증번호
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ZyGames.Framework.Game.Sns.LoginLG.CheckLogin">
+            <summary>
+            
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:ZyGames.Framework.Game.Sns.LoginMeiZu">
             <summary>
@@ -8672,6 +8870,11 @@
             </summary>
         </member>
         <member name="P:ZyGames.Framework.Game.Sns.Service.LoginToken.UserId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ZyGames.Framework.Game.Sns.Service.LoginToken.UserType">
             <summary>
             
             </summary>
@@ -10435,17 +10638,19 @@
             登录代理
             </summary>
         </member>
-        <member name="M:ZyGames.Framework.Game.Sns.LoginProxy.#ctor(ZyGames.Framework.Game.Service.ActionGetter)">
-            <summary>
-            Initializes a new instance of the <see cref="T:ZyGames.Framework.Game.Sns.LoginProxy"/> class.
-            </summary>
-            <param name="httpGet">Http get.</param>
-        </member>
-        <member name="M:ZyGames.Framework.Game.Sns.LoginProxy.GetLogin">
+        <member name="M:ZyGames.Framework.Game.Sns.LoginProxy.GetLogin(ZyGames.Framework.Game.Service.ActionGetter,System.String)">
             <summary>
             Gets the login.
             </summary>
             <returns>The login.</returns>
+        </member>
+        <member name="M:ZyGames.Framework.Game.Sns.LoginProxy.GetLogin(System.String,System.Object)">
+            <summary>
+            Gets the login.
+            </summary>
+            <param name="retaiId"></param>
+            <param name="obj">sdk json object of request or ActionGetter object</param>
+            <returns></returns>
         </member>
         <member name="T:ZyGames.Framework.Game.Sns.LoginUC">
             <summary>

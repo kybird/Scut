@@ -7308,6 +7308,11 @@
             
             </summary>
         </member>
+        <member name="P:ZyGames.Framework.Model.ISqlEntity.TempTimeModify">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="F:ZyGames.Framework.Model.AbstractEntity.KeyCodeJoinChar">
             <summary>
             
@@ -8365,6 +8370,11 @@
             
             </summary>
             <returns></returns>
+        </member>
+        <member name="P:ZyGames.Framework.Model.MemoryEntity.TempTimeModify">
+            <summary>
+            entity modify time.
+            </summary>
         </member>
         <member name="P:ZyGames.Framework.Model.MemoryEntity.PersonalId">
             <summary>
