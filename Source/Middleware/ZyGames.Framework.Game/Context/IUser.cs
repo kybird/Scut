@@ -64,5 +64,12 @@ namespace ZyGames.Framework.Game.Context
         /// </summary>
         void RefleshOnlineDate();
 
+        /// <summary>
+        /// Get Role ID
+        /// </summary>
+        /// <returns></returns>
+        UInt64 GetRoleId();
+
+        void SetRoleId(UInt64 roleID);
     }
 }

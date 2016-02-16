@@ -7794,7 +7794,7 @@
             
             </summary>
         </member>
-        <member name="M:ZyGames.Framework.Game.Sns.AccountServerLogin.#ctor(System.String,System.String,System.String,System.Int32)">
+        <member name="M:ZyGames.Framework.Game.Sns.AccountServerLogin.#ctor(System.String,System.String)">
             <summary>
             
             </summary>
@@ -7866,6 +7866,42 @@
         <member name="P:ZyGames.Framework.Game.Sns.AccountServerLogin.State">
             <summary>
             
+            </summary>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.Google.VerifyToken">
+            <summary>
+             This is a minimal implementation of OAuth V2 verification that
+             demonstrates:
+               - ID Token validation
+               - Access token validation
+            </summary>
+            @author class@google.com (Gus Class)
+        </member>
+        <member name="M:ZyGames.Framework.Game.Sns.Google.VerifyToken.ProcessRequest(System.String,System.String)">
+            <summary>
+            Processes the request based on the path.
+            </summary>
+            <param name="context">Contains the request and response.</param>
+        </member>
+        <member name="M:ZyGames.Framework.Game.Sns.Google.VerifyToken.getCertBytes">
+            <summary>
+            Retrieves the certificates for Google and returns them as byte arrays.
+            </summary>
+            <returns>An array of byte arrays representing the Google certificates.</returns>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.Google.VerifyToken.id_token_status">
+            <summary>
+            Stores the result data for the ID token verification.
+            </summary>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.Google.VerifyToken.access_token_status">
+            <summary>
+            Stores the result data for the access token verification.
+            </summary>
+        </member>
+        <member name="T:ZyGames.Framework.Game.Sns.Google.VerifyToken.token_status_wrapper">
+            <summary>
+            Stores the result data for both token status responses.
             </summary>
         </member>
         <member name="T:ZyGames.Framework.Game.Sns.LineGame.LGSDK">
