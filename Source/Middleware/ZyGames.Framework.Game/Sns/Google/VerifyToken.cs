@@ -85,7 +85,7 @@ namespace ZyGames.Framework.Game.Sns.Google
                         ValidAudience = CLIENT_ID,
 
                         ValidateIssuer = true, // check token came from Google
-                        ValidIssuer = "accounts.google.com",
+                        ValidIssuer = "https://accounts.google.com",
 
                         ValidateIssuerSigningKey = true,
                         RequireSignedTokens = true,
