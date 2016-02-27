@@ -39,7 +39,10 @@ namespace ProxyServer
 {
     class RequestParse
     {
-        private static string signkey = ConfigUtils.GetSetting("ProxySignkey", "44CAC8ED53714BF18D60C5C7B6296000");
+        //private static string signkey = ConfigUtils.GetSetting("ProxySignkey", "44CAC8ED53714BF18D60C5C7B6296000");
+
+
+        private static string signkey = ConfigUtils.GetSetting("ProxySignkey", "jB6-pN-5");
         private static bool enableErrorMsg = ConfigUtils.GetSetting("EnableErrorMsg", false);
         public static NameValueCollection Parse(string ip, string rawUrl, string data, out int gameId, out int serverId, out int statuscode)
         {

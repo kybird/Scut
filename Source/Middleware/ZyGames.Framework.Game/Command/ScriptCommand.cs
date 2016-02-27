@@ -24,6 +24,7 @@ THE SOFTWARE.
 
 using System;
 using ZyGames.Framework.Common.Log;
+using ZyGames.Framework.Game.Configuration;
 using ZyGames.Framework.Script;
 
 namespace ZyGames.Framework.Game.Command
@@ -56,19 +57,31 @@ namespace ZyGames.Framework.Game.Command
         /// <param name="args">Arguments.</param>
         protected override void ProcessCmd(string[] args)
         {
-            string routeName = string.Format("Gm.{0}", _cmd);
-            dynamic scriptScope = ScriptEngines.Execute(routeName, null);
-            if (scriptScope != null)
+            string typeName = "";
+            if (ZyGameBaseConfigManager.GameSetting.HasSetting)
             {
-                try
+                typeName = ZyGameBaseConfigManager.GameSetting.GetGmCommandType(_cmd);
+
+                var arr = typeName.Split(',');
+                string routeName = arr[0];
+                string typeNAme = arr[1];
+                dynamic scriptScope = ScriptEngines.Execute(routeName, typeNAme);
+                if (scriptScope != null)
                 {
-                    scriptScope.processCmd(UserID, args);
+                    try
+                    {
+                        scriptScope.processCmd(UserID, args);
+                    }
+                    catch (Exception ex)
+                    {
+                        TraceLog.WriteError("Gm:{0} process error:{1}", _cmd, ex);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    TraceLog.WriteError("Gm:{0} process error:{1}", _cmd, ex);
-                }
+
             }
+            
+
+            
         }
     }
 }

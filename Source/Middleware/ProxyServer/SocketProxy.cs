@@ -154,14 +154,14 @@ namespace ProxyServer
                 var requestParam = RequestParse.Parse(ip, "", data, out gameId, out serverId, out statuscode);
                 if (statuscode != (int)HttpStatusCode.OK)
                 {// 接收到非法数据
-                    listener.CloseSocket(e.Socket);
+                    //listener.CloseSocket(e.Socket);
                     return;
                 }
                 ClientConnection clientConnection;
                 if (!clientConnections.TryGetValue(e.Socket, out clientConnection))
                 {
                     TraceLog.WriteError("接收到不在连接池中的socket数据，哪里有bug。");
-                    listener.CloseSocket(e.Socket);
+                    //listener.CloseSocket(e.Socket);
                     return;
                 }
 

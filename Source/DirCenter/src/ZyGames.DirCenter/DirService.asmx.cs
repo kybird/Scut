@@ -36,36 +36,36 @@ using ZyGames.DirCenter.Model;
 namespace ZyGames.DirCenter
 {
     /// <summary>
-    /// Service 的摘要说明
+    /// Service 의 요약설명
     /// </summary>
-    [WebService(Namespace = "http://dir.scutgame.com/")]
+    [WebService(Namespace = "http://localhost/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [ToolboxItem(false)]
-    // 若要允许使用 ASP.NET AJAX 从脚本中调用此 Web 服务，请取消对下行的注释。
+    // 만약 ASP.NET AJX 웹서비스를 스크립트에서 호출해서 사용하려면 아래줄 주석을 해제하라
     // [System.Web.Script.Services.ScriptService]
     public class DirService : System.Web.Services.WebService
     {
-        [WebMethod(Description = "官方游戏列表")]
+        [WebMethod(Description = "공식게임리스트")]
         public GameInfo[] GetOfficialGame()
         {
             CacheGame cacheGame = new CacheGame();
             return cacheGame.GetOfficialGame().ToArray();
         }
 
-        [WebMethod(Description = "游戏列表")]
+        [WebMethod(Description = "게임리스트")]
         public GameInfo GetGameObj(int gameID)
         {
             CacheGame cacheGame = new CacheGame();
             return cacheGame.GetGame(gameID);
         }
 
-        [WebMethod(Description = "游戏列表")]
+        [WebMethod(Description = "게임리스트")]
         public GameInfo[] GetGame()
         {
             CacheGame cacheGame = new CacheGame();
             return cacheGame.GetGame().ToArray();
         }
-        [WebMethod(Description = "游戏信息")]
+        [WebMethod(Description = "게임정보")]
         public GameInfo GetGameInfo(int gameId)
         {
             CacheGame cacheGame = new CacheGame();
@@ -81,14 +81,14 @@ namespace ZyGames.DirCenter
             }
             return gameInfo;
         }
-        [WebMethod(Description = "增加游戏")]
+        [WebMethod(Description = "게임추가")]
         public void AddGame(int gameID, string gameName)
         {
             CacheGame cacheGame = new CacheGame();
             cacheGame.AddToCache(new GameInfo() { ID = gameID, Name = gameName });
         }
 
-        [WebMethod(Description = "增加游戏")]
+        [WebMethod(Description = "게임추가")]
         public void AddGameNew(int gameID, string gameName, string currency, decimal multiple, string gameWord, string agentsID, bool isRelease, DateTime releaseDate, string payStyle, string SocketServer, int SocketPort)
         {
             CacheGame cacheGame = new CacheGame();
@@ -108,7 +108,7 @@ namespace ZyGames.DirCenter
             });
         }
 
-        [WebMethod(Description = "增加游戏新服")]
+        [WebMethod(Description = "게임에새서버추가")]
         public void AddServer(int gameID, int serverId, string serverName, string serverUrl, string status, string intranetAddress)
         {
             CacheServer cacheServer = new CacheServer();
@@ -123,77 +123,77 @@ namespace ZyGames.DirCenter
             });
         }
 
-        [WebMethod(Description = "设置服务器")]
+        [WebMethod(Description = "서버설정")]
         public void SetServer(int serverID, int gameID, string serverName, string serverUrl, string status, int weight, string intranetAddress)
         {
             CacheServer cacheServer = new CacheServer();
             cacheServer.SetServer(serverID, gameID, serverName, serverID, serverUrl, status, weight, intranetAddress);
         }
 
-        [WebMethod(Description = "游戏服务器列表")]
+        [WebMethod(Description = "게임서버리스트")]
         public ServerInfo GetServerObj(int gameID, int serverId)
         {
             CacheServer cacheServer = new CacheServer();
             return cacheServer.GetServers(gameID, serverId);
         }
 
-        [WebMethod(Description = "游戏服务器列表")]
+        [WebMethod(Description = "게임서버리스트")]
         public ServerInfo[] GetServers(int gameID, bool isSort, bool isEnable)
         {
             CacheServer cacheServer = new CacheServer();
             return cacheServer.GetServers(gameID, isSort, isEnable).ToArray();
         }
 
-        [WebMethod(Description = "游戏服务器列表")]
+        [WebMethod(Description = "게임서버리스트")]
         public ServerInfo[] GetServerList(int gameID)
         {
             CacheServer cacheServer = new CacheServer();
             return cacheServer.GetServerList(gameID, false).ToArray();
         }
 
-        [WebMethod(Description = "游戏服务器排序列表")]
+        [WebMethod(Description = "게임서버정렬리스트")]
         public ServerInfo[] GetServerSortList(int gameID)
         {
             CacheServer cacheServer = new CacheServer();
             return cacheServer.GetServerList(gameID, true).ToArray();
         }
 
-        [WebMethod(Description = "删除游戏服务器")]
+        [WebMethod(Description = "게임서버삭제")]
         public void RemoveServer(int gameID, int serverID)
         {
             CacheServer cacheServer = new CacheServer();
             cacheServer.RemoveServer(gameID, serverID);
         }
 
-        [WebMethod(Description = "删除游戏")]
+        [WebMethod(Description = "게임삭제")]
         public void RemoveGame(int gameID)
         {
             CacheGame cacheGame = new CacheGame();
             cacheGame.RemoveGame(gameID);
         }
 
-        [WebMethod(Description = "设置服务器活跃值")]
+        [WebMethod(Description = "서버활성치설정")]
         public void SetActiveNum(int serverID, int gameID, int activeNum)
         {
             CacheServer cacheServer = new CacheServer();
             cacheServer.SetActiveNum(serverID, gameID, activeNum);
         }
 
-        [WebMethod(Description = "设置服务器刷新")]
+        [WebMethod(Description = "서버갱신설정")]
         public bool ReloadServer(int gameID)
         {
             CacheServer cacheServer = new CacheServer();
             return cacheServer.ReloadServer(gameID);
         }
 
-        [WebMethod(Description = "获取游戏名称")]
+        [WebMethod(Description = "게임이름가져오기")]
         public string GetGameName(int gameID)
         {
             CacheGame cacheGame = new CacheGame();
             return cacheGame.GetGameName(gameID);
         }
 
-        [WebMethod(Description = "获取服务器名称")]
+        [WebMethod(Description = "서버이름가져오기")]
         public string GetServerName(int gameID, int serverID)
         {
             CacheServer cacheServer = new CacheServer();
@@ -201,7 +201,7 @@ namespace ZyGames.DirCenter
             return info == null ? "" : info.ServerName;
         }
 
-        [WebMethod(Description = "游戏服务器开启时间")]
+        [WebMethod(Description = "게임서버기동시간")]
         public void SetServerEnableDate(int gameID, int serverID, DateTime enableDate)
         {
             CacheServer cacheServer = new CacheServer();
@@ -209,14 +209,14 @@ namespace ZyGames.DirCenter
         }
 
 
-        [WebMethod(Description = "是否启用游戏服务器")]
+        [WebMethod(Description = "게임서버기동여부")]
         public void EnableServer(int gameID, int serverID, bool isEnable)
         {
             CacheServer cacheServer = new CacheServer();
             cacheServer.EnableServer(gameID, serverID, isEnable);
         }
 
-        [WebMethod(Description = "分服状态")]
+        [WebMethod(Description = "분배서버상태")]
         public void ServerStatus(int gameID, int serverID, int Status)
         {
             CacheServer cacheServer = new CacheServer();
