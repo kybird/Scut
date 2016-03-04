@@ -37,13 +37,18 @@ namespace ZyGames.Test
         }
 
         public int UserId { get; set; }
+        public long RoleID { get; set; }
 
         public string SessionId { get; set; }
 
         public string PassportId { get; set; }
+        public string Password { get; set; }
 
         public object UserData { get; set; }
 
         public object Tag { get; set; }
+
+        public string UserType { get; set; }
+        public string Token { get; set; }
     }
 }

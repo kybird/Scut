@@ -43,6 +43,9 @@ namespace ZyGames.Test
         private static int _testUserId;
         private static string _testUserPwd;
 
+        private static string _accountUrl;
+
+       
         static TaskSetting()
         {
             _caseStepTypeFormat = ConfigUtils.GetSetting("CaseStep.Type.Format", "");
@@ -59,6 +62,7 @@ namespace ZyGames.Test
             _testPassprotId = ConfigUtils.GetSetting("Test.Pid", 10000);
             _testUserId = ConfigUtils.GetSetting("Test.Uid", 1380000);
             _testUserPwd = ConfigUtils.GetSetting("Test.UserPwd", "");
+            _accountUrl = ConfigUtils.GetSetting("AccountServerUrl", "");
         }
 
         public TaskSetting()
@@ -76,7 +80,11 @@ namespace ZyGames.Test
             UserId = _testUserId;
             UserPwd = _testUserPwd;
             CaseStepList = new List<string>(_testSteps);
+
+            AccountURL = _accountUrl;
         }
+
+        public string AccountURL { get; set; }
 
         public string CaseStepTypeFormat { get; set; }
 

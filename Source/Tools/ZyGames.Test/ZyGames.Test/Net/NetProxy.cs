@@ -55,6 +55,18 @@ namespace ZyGames.Test.Net
             return Encoding(string.Format("{0}&sign={1}", param, sign));
         }
 
+        public static string GetSignNotEncode(string param, string signKey)
+        {
+            string sign = "";
+            if (!string.IsNullOrEmpty(signKey))
+            {
+                sign = FormsAuthentication.HashPasswordForStoringInConfigFile(param + signKey, "MD5").ToLower();
+            }
+            return string.Format("{0}&sign={1}", param, sign);
+        }
+
+
+
         public static NetProxy Create(string remoteAddress)
         {
             NetProxy session = null;

@@ -56,11 +56,24 @@ namespace ZyGames.Test
             _netProxy.CheckConnect();
         }
 
+        public void InitConnect(string url)
+        {
+            if (_netProxy == null)
+            {
+                _netProxy = NetProxy.Create(url);
+            }
+            _netProxy.CheckConnect();
+        }
+
         public NetProxy Proxy { get { return _netProxy; } }
 
         public int Id { get; set; }
 
         public CaseContext Context { get; set; }
+
+        //public string Pid { get; set; }
+        //public string Password { get; set; }
+
 
     }
 }

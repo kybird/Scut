@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+using System;
 using ZyGames.Framework.RPC.IO;
 
 namespace ZyGames.Test.App.Case
@@ -33,27 +34,30 @@ namespace ZyGames.Test.App.Case
     {
         protected override void SetUrlElement()
         {
-            int number = _session.Setting.PassprotId + _session.Id;
-            var pid = "Z" + number;
-            SetRequestParam("UserName", "NName" + number);
-            SetRequestParam("Sex", 1);
-            SetRequestParam("HeadID", 0);
-            SetRequestParam("RetailID", "0000");
-            SetRequestParam("Pid", pid);
-            SetRequestParam("MobileType", 1);
-            SetRequestParam("DeviceID", "");
-            SetRequestParam("ScreenX", 100);
-            SetRequestParam("ScreenY", 100);
-            SetRequestParam("ClientAppVersion", 1);
-            SetRequestParam("ProfessionType", 1);
-            SetRequestParam("PointX", 100);
-            SetRequestParam("PointY", 100);
+            SetRequestParam("Type", (short)1);
+            SetRequestParam("RoleName", "Role" + _session.Context.UserId);
+            SetRequestParam("Appearance", "DEPRECATED");
+            SetRequestParam("Eye", (int)1);
+            SetRequestParam("FaceType", (int)1);
+            SetRequestParam("Skin", (int)1);
+            SetRequestParam("HairStyle", (int)1);
 
         }
 
         protected override bool DecodePacket(MessageStructure reader, MessageHead head)
         {
-            _session.Context.UserId = reader.ReadInt();
+            short type = reader.ReadShort();
+            long roleID = reader.ReadLong();
+            string roleName = reader.ReadString();
+            string appearance = reader.ReadString();
+            DateTime createDate = reader.ReadDateTime();
+
+            _session.Context.RoleID = roleID;
+
+
+            SetChildStep("1008"); // 로그인으로!
+
+
             return true;
         }
 

@@ -22,7 +22,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+using System;
+using System.Collections.Generic;
 using ZyGames.Framework.Common;
+using ZyGames.Framework.Common.Log;
 using ZyGames.Framework.RPC.IO;
 
 namespace ZyGames.Test.App.Case
@@ -34,32 +37,68 @@ namespace ZyGames.Test.App.Case
     {
         protected override void SetUrlElement()
         {
-            _session.Context.PassportId = "Z" + (_session.Setting.PassprotId + _session.Id);
-            string pwd = EncodePassword(_session.Setting.UserPwd);
+            //_session.Context.PassportId = "Z" + (_session.Setting.PassprotId + _session.Id);
+            //string pwd = EncodePassword(_session.Setting.UserPwd);
             SetRequestParam("MobileType", 1);
+            SetRequestParam("Token", _session.Context.Token);
+            SetRequestParam("IMEI", _session.Id);
+            SetRequestParam("RetailID", "1234");
             SetRequestParam("Pid", _session.Context.PassportId);
-            SetRequestParam("Pwd", pwd);
-            SetRequestParam("DeviceID", "0a-0s-0f-04");
-            SetRequestParam("GameType", _session.Setting.GameId);
-            SetRequestParam("ServerID", _session.Setting.ServerId);
+            SetRequestParam("Pwd", _session.Context.Password);
             SetRequestParam("ScreenX", "500");
             SetRequestParam("ScreenY", "400");
-            SetRequestParam("RetailID", "0000");
-            SetRequestParam("RetailUser", "");
             SetRequestParam("ClientAppVersion", "1");
+
+            
+            
+            //writer.writeString("IMEI", actionParam.Get<String>("IMEI"));
+            //writer.writeString("RetailID", actionParam.Get<String>("RetailID"));
+            //writer.writeString("Pid", "1");
+            //writer.writeString("Pwd", "1");
+            //writer.writeInt32("ScreenX", actionParam.Get<Int32>("ScreenX"));
+            //writer.writeInt32("ScreenY", actionParam.Get<Int32>("ScreenY"));
+            //writer.writeString("ClientAppVersion", actionParam.Get<String>("ClientAppVersion"));
 
         }
 
         protected override bool DecodePacket(MessageStructure reader, MessageHead head)
         {
-            _session.Context.SessionId = reader.ReadString();
-            _session.Context.UserId = reader.ReadString().ToInt();
+            string sessionID = reader.ReadString();
+            string userId = reader.ReadString();
             int UserType = reader.ReadInt();
-            string LoginTime = reader.ReadString();
-            int GuideID = reader.ReadInt();
-            if (GuideID == 1005)
+            short count = reader.ReadShort();
+
+            int subRecordCount = reader.ReadInt();
+
+            var subTable = new Dictionary<string, object>();
+            for (int i = 0; i < subRecordCount; i++)
             {
-                SetChildStep("1005");
+                var subRecord = new Dictionary<string, object>();
+                reader.RecordStart();
+                subRecord["ClothSetSlotID"] = reader.ReadShort();
+                subRecord["Lv"] = reader.ReadUInt16().ToString();
+                subRecord["Type"] = reader.ReadUInt16();
+                subRecord["RoleId"] = reader.ReadUInt64();
+                subRecord["RoleName"] = reader.ReadString();
+                subRecord["Appearance"] = reader.ReadString();
+                subRecord["CreateDate"] = reader.ReadDateTime();
+                _session.Context.RoleID = subRecord["RoleId"].ToLong();
+
+                reader.RecordEnd();
+            }
+
+            int premiumMoney = reader.ReadInt();
+            _session.Context.SessionId = sessionID;
+            TraceLog.WriteInfo("UserID:{0}", userId);
+
+
+            if (subRecordCount == 0)
+            {
+                SetChildStep("1005"); // 케릭터 생성
+            }
+            else
+            {
+                SetChildStep("1008"); // 월드인
             }
             return true;
         }

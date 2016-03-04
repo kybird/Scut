@@ -56,7 +56,7 @@ namespace ZyGames.Test
 
         protected ThreadSession _session;
         protected StepTimer _stepTimer;
-        private Dictionary<string, string> _params;
+        protected Dictionary<string, string> _params;
 
         protected CaseStep()
         {
@@ -135,7 +135,7 @@ namespace ZyGames.Test
             }
         }
 
-        private void DoRunProcess(byte[] sendData)
+        protected virtual void DoRunProcess(byte[] sendData)
         {
             bool success = false;
             try
@@ -201,7 +201,7 @@ namespace ZyGames.Test
             return true;
         }
 
-        private void InitConnect()
+        protected virtual void InitConnect()
         {
             _session.InitConnect();
         }
@@ -223,7 +223,7 @@ namespace ZyGames.Test
 
         protected abstract bool DecodePacket(MessageStructure reader, MessageHead head);
 
-        private void DoResult()
+        protected void DoResult()
         {
             _stepTimer.DoResult();
         }

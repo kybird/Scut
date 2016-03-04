@@ -47,7 +47,7 @@ namespace ZyGames.Test
             int errorCount = 0;
             if (setting.CaseStepList.Count == 0)
             {
-                mainBuilder.AppendFormat("CaseStep is not setting.");
+                mainBuilder.AppendFormat("CaseStep is not setting.");   
                 mainBuilder.AppendLine();
             }
             else
