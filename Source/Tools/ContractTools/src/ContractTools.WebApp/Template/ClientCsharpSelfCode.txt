@@ -15,7 +15,7 @@ public class Action##ID## : GameAction
     {
         if (actionParam.HasValue)
         {
-            //设置自定的请求参数
+            //사용자지정 요청매개변수 설정 
             //T requestPack = actionParam.GetValue<T>();
             //byte[] data = ProtoBufUtils.Serialize(requestPack);
             //writer.SetBodyData(data);
@@ -24,7 +24,7 @@ public class Action##ID## : GameAction
 
     protected override void DecodePackage(NetReader reader)
     {
-        //解服务器下发的包
+        // 서버가 보낸 패킷을 해석
         T responseData = ProtoBufUtils.Deserialize<T>(reader.Buffer);
         actionResult = new ActionResult(responseData);
 

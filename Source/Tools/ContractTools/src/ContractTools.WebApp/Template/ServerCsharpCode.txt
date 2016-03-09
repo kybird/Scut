@@ -32,7 +32,7 @@ namespace ##Namespace##
         /// <summary>
         /// Process Client Request parameter
         /// </summary>
-        /// <returns>false:中断后面的方式执行并返回Error</returns>
+        /// <returns>false: stop following process and return error</returns>
         public override bool GetUrlElement()
         {
 ##Judge##
@@ -48,7 +48,7 @@ namespace ##Namespace##
         }
 
         /// <summary>
-        /// 下发给客户的包结构数据
+        /// 클라이언트에게 전송하는 패킷 데이터의 구조
 		/// Data strutcture as response for send to client
         /// </summary>
         public override void BuildPacket()

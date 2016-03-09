@@ -592,7 +592,8 @@ namespace ZyGames.Framework.Cache.Generic
                     return true;
                 }
             }
-            Console.WriteLine("Add Data Failed because key is already exist");
+            
+            Console.WriteLine(string.Format("Add Data Failed because key is already exist key:{0}, Value:{1}", key, typeof(T)));
             return false;
         }
         /// <summary>

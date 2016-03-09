@@ -8,7 +8,7 @@ namespace ##Namespace##
     /// <summary>
     /// ##Description##
     /// </summary>
-    /// <remarks>继续BaseStruct类:允许无身份认证的请求;AuthorizeAction:需要身份认证的请求</remarks>
+    /// <remarks>BaseStruct클래스를상속: 신분증명없는요청을허용;AuthorizeAction:신분증명이필요한요청</remarks>
     public class Action##ID## : AuthorizeAction
     {
         public Action##ID##(ActionGetter actionGetter)
@@ -18,7 +18,7 @@ namespace ##Namespace##
         }
 
         /// <summary>
-        /// 检查的Action是否需要授权访问
+        /// Action 이 권한부여가 필요한지검사
         /// </summary>
         protected override bool IgnoreActionId
         {
@@ -26,28 +26,28 @@ namespace ##Namespace##
         }
 
         /// <summary>
-        /// 客户端请求的参数较验
+        /// 클라이언트 요청파라메터 검사
         /// </summary>
-        /// <returns>false:中断后面的方式执行并返回Error</returns>
+        /// <returns>false: stop following operation and return Error</returns>
         public override bool GetUrlElement()
         {
             byte[] data = (byte[])actionGetter.GetMessage();
-            //使用protobuf反序列化
+            //use protobuf deserialize
             //T t = ProtoBufUtils.Deserialize<T>(data);
         }
 
         /// <summary>
-        /// 业务逻辑处理
+        /// business logic process
         /// </summary>
-        /// <returns>false:中断后面的方式执行并返回Error</returns>
+        /// <returns>false:stop following mothod and return error</returns>
         public override bool TakeAction()
         {
-            //在这里处理业务
+            // in here process logic
             return true;
         }
 
         /// <summary>
-        /// 下发给客户的包结构数据
+        /// data structure that send to client
         /// </summary>
         public override byte[] BuildResponsePack()
         {

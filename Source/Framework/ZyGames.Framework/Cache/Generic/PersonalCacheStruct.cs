@@ -930,7 +930,7 @@ namespace ZyGames.Framework.Cache.Generic
                 }
                 receiveParam.DbFilter = filter;
             }
-            return TryLoadCache(personalId, receiveParam, periodTime, false);
+            return TryLoadCache(personalId, receiveParam, periodTime, isReplace);
         }
 
         /// <summary>

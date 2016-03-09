@@ -25,6 +25,7 @@ THE SOFTWARE.
 using System;
 using System.IO;
 using System.Net;
+using ZyGames.Framework.Common.Log;
 
 namespace ZyGames.Test.Net
 {
@@ -43,11 +44,17 @@ namespace ZyGames.Test.Net
             request.Method = "POST";
             request.ContentType = "application/octetstream"; 
             request.ContentLength = data.Length;
+
+
+            TraceLog.WriteComplement(System.Text.Encoding.Default.GetString(data));
+
+
             using (Stream stream = request.GetRequestStream())
             {
                 stream.Write(data, 0, data.Length);
                 stream.Close();
             }
+            
             byte[] result = new byte[0];
             WebResponse resp = request.GetResponse();
             using (Stream stream = resp.GetResponseStream())
