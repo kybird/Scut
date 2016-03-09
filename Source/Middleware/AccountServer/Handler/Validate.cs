@@ -49,7 +49,7 @@ namespace AccountServer.Handler
                 Token = userToken.Token,
                 UserId = userToken.UserId,
                 PassportId = userToken.PassportId,
-                UserType = userToken.UserType,
+                UserType = userToken.UserType
             };
         }
     }

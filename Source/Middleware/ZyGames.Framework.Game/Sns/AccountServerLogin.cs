@@ -60,27 +60,28 @@ namespace ZyGames.Framework.Game.Sns
         /// <param name="token"></param>
         /// <param name="imei"></param>
         /// <param name="timeout"></param>
-        public AccountServerLogin(string token, string imei)
+        public AccountServerLogin(string url, string token, string imei, int timeout = 3000)
             : this()
         {
-            _url = GameEnvironment.Setting.AccountServerUrl;
+            _url = url;
             _imei = imei;
-            _timeout = 3000;
+            _timeout = timeout;
             Token = token;
         }
+
         #region property
         /// <summary>
         /// 
         /// </summary>
-        public string PassportID { get; private set; }
+        public string PassportID { get; protected set; }
         /// <summary>
         /// 
         /// </summary>
-        public string UserID { get; private set; }
+        public string UserID { get; protected set; }
         /// <summary>
         /// 
         /// </summary>
-        public int UserType { get; private set; }
+        public int UserType { get; protected set; }
         /// <summary>
         /// 
         /// </summary>
@@ -88,7 +89,7 @@ namespace ZyGames.Framework.Game.Sns
         /// <summary>
         /// 
         /// </summary>
-        public string SessionID { get; private set; }
+        public string SessionID { get; protected set; }
         /// <summary>
         /// 
         /// </summary>
@@ -184,7 +185,7 @@ namespace ZyGames.Framework.Game.Sns
                 {
                     PassportID = token.PassportId;
                     UserID = token.UserId.ToString();
-                    UserType = token.UserType.ToInt();
+                    UserType = token.UserType;
                     return true;
                 }
             }
@@ -222,6 +223,46 @@ namespace ZyGames.Framework.Game.Sns
             }
             string sign = CryptoHelper.MD5_Encrypt(query + signKey, Encoding.UTF8);
             return string.Format("{0}&Sign={1}", query, sign);
+        }
+    }
+
+    /// <summary>
+    /// 直接连接Redis服务验证
+    /// </summary>
+    public class AccountServerRedisLogin : AccountServerLogin
+    {
+        private readonly string _host;
+        private readonly int _db;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="host"></param>
+        /// <param name="db"></param>
+        /// <param name="token"></param>
+        public AccountServerRedisLogin(string host, int db, string token)
+        {
+            _host = host;
+            _db = db;
+            Token = token;
+        }
+
+
+        public override bool CheckLogin()
+        {
+            UserToken userToken = null;
+            if ((userToken = HandlerManager.GetUserToken(Token, _host, _db)) == null)
+            {
+                return false;
+            }
+            if (userToken.ExpireTime < DateTime.Now)
+            {
+                return false;
+            }
+            PassportID = userToken.PassportId;
+            UserID = userToken.UserId.ToString();
+            UserType = userToken.UserType;
+            return true;
         }
     }
 }

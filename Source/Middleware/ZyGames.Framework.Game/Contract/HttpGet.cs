@@ -59,6 +59,11 @@ namespace ZyGames.Framework.Game.Contract
         /// 
         /// </summary>
         public const string ParamSt = "St";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ParamPtcl = "Ptcl";
+
         private string _originalParam = string.Empty;
         private StringBuilder _error = new StringBuilder();
         private Dictionary<string, string> _param = new Dictionary<string, string>(StringComparer.InvariantCultureIgnoreCase);
@@ -148,6 +153,7 @@ namespace ZyGames.Framework.Game.Contract
         public int MsgId { get; private set; }
 
         private int _actionId;
+        private ProtocolVersion _ptcl = ProtocolVersion.Default;
 
         /// <summary>
         /// Action编号
@@ -156,8 +162,6 @@ namespace ZyGames.Framework.Game.Contract
         {
             get { return _actionId; }
         }
-
-
 
         private string _paramString;
 
@@ -176,6 +180,11 @@ namespace ZyGames.Framework.Game.Contract
         public override string GetSt()
         {
             return _param.ContainsKey(ParamSt) ? _param[ParamSt] : string.Empty;
+        }
+
+        public override ProtocolVersion GetPtcl()
+        {
+            return _ptcl;
         }
 
         /// <summary>
@@ -206,6 +215,7 @@ namespace ZyGames.Framework.Game.Contract
         {
             MsgId = (_param.ContainsKey(ParamMsgId) ? _param[ParamMsgId] : "0").ToInt();
             _actionId = (_param.ContainsKey(ParamActionId) ? _param[ParamActionId] : "0").ToInt();
+            _ptcl = (_param.ContainsKey(ParamPtcl) ? _param[ParamPtcl] : "0").ToEnum<ProtocolVersion>();
         }
 
         private void RemoveSignKey(string d)
@@ -248,6 +258,24 @@ namespace ZyGames.Framework.Game.Contract
         {
             return ParamString;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="param"></param>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <param name="isRequired"></param>
+        /// <returns></returns>
+        public override ulong GetLongValue(string param, ulong min, ulong max, bool isRequired = true)
+        {
+            ulong value = 0;
+            if (!GetLong(param, ref value, min, max) && isRequired)
+            {
+                throw new ArgumentOutOfRangeException("param", string.Format("{0} value out of range[{1}-{2}]", param, min, max));
+            }
+            return value;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -458,6 +486,29 @@ namespace ZyGames.Framework.Game.Contract
             WriteContainsError(param);
             return false;
         }
+
+        public override bool GetLong(string aName, ref ulong rValue, ulong minValue = 0, ulong maxValue = ulong.MaxValue)
+        {
+            bool result = false;
+            if (_param.ContainsKey(aName))
+            {
+                result = ulong.TryParse(_param[aName], out rValue);
+                if (result)
+                {
+                    result = rValue >= minValue && rValue <= maxValue;
+                }
+                if (!result)
+                {
+                    WriteRangOutError(aName, minValue, maxValue);
+                }
+            }
+            else
+            {
+                WriteContainsError(aName);
+            }
+            return result;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -810,6 +861,14 @@ namespace ZyGames.Framework.Game.Contract
             _error.AppendFormat(Language.Instance.UrlNoParam, param);
         }
 
+        private void WriteRangOutError(string param, ulong min, ulong max)
+        {
+            if (_error.Length > 0)
+            {
+                _error.Append(",");
+            }
+            _error.AppendFormat(Language.Instance.UrlParamOutRange, param, min, max);
+        }
         private void WriteRangOutError(string param, long min, long max)
         {
             if (_error.Length > 0)
@@ -845,7 +904,7 @@ namespace ZyGames.Framework.Game.Contract
         /// 
         /// </summary>
         /// <returns></returns>
-        public override int GetUserId()
+        public override long GetUserId()
         {
             return Session != null ? Session.UserId : 0;
         }

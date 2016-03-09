@@ -39,10 +39,18 @@ namespace ZyGames.Framework.Game.Sns.Service
         /// <summary>
         /// 
         /// </summary>
-        public int UserId { get; set; }
+        public long UserId { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
         public int UserType { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsGuest
+        {
+            get { return UserType == (int) RegType.Guest; }
+        }
     }
 }
