@@ -52,7 +52,5 @@ namespace ZyGames.Framework.Game.Sns.Service
         /// 
         /// </summary>
         public DateTime ExpireTime { get; set; }
-
-        public int UserType { get; set; }
     }
 }
