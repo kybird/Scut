@@ -40,12 +40,14 @@ namespace AccountServer.Handler
                 throw new HandlerException(StateCode.Error, StateDescription.PasswordOrPassError);
             }
             data.Pwd = DecodePassword(data.Pwd);
-            int userId = SnsManager.QuickRegisterPassport(data.Pid, data.Pwd, data.DeviceID, data.IsCustom);
+            int userType;
+            var userId = SnsManager.QuickRegisterPassport(data.Pid, data.Pwd, data.DeviceID, out userType, data.IsCustom);
             if (userId <= 0)
             {
                 throw new HandlerException(StateCode.Error, StateDescription.RegistError);
             }
             return AuthorizeLogin(userId, data.Pid, RegType.Guest);
+            return AuthorizeLogin(userId, data.Pid, userType);
         }
 
     }

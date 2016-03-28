@@ -37,13 +37,17 @@ namespace ZyGames.Framework.Game.Sns.Service
         /// <summary>
         /// 
         /// </summary>
-        public int UserId { get; set; }
+        public long UserId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         public string PassportId { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public int UserType { get; set; }
         /// <summary>
         /// 
         /// </summary>

@@ -214,6 +214,11 @@ namespace ZyGames.Framework.Cache.Generic
         /// <returns></returns>
         public static T GetOrAdd<T>(string personalId, Lazy<T> createFactory, params object[] keys) where T : BaseEntity, new()
         {
+            var primaryKeys = EntitySchemaSet.Get<T>().Keys;
+            if (primaryKeys.Length > 1 && keys.Length != primaryKeys.Length)
+            {
+                throw new ArgumentNullException("keys", string.Format("Set args:\"{0}\" value error.", string.Join(",", primaryKeys)));
+            }
             var cache = new PersonalCacheStruct<T>();
             T result;
             LoadingStatus status;
@@ -228,7 +233,11 @@ namespace ZyGames.Framework.Cache.Generic
             }
             return result;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="enumerable"></param>
+        /// <returns></returns>
         public static bool AddRange(params BaseEntity[] enumerable)
         {
             return AddRange(true, enumerable);
@@ -931,6 +940,24 @@ namespace ZyGames.Framework.Cache.Generic
                 receiveParam.DbFilter = filter;
             }
             return TryLoadCache(personalId, receiveParam, periodTime, isReplace);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataList"></param>
+        /// <param name="isReplace"></param>
+        public void InitData(List<T> dataList, bool isReplace = true)
+        {
+            var st = SchemaTable();
+            int periodTime = st == null ? 0 : st.PeriodTime;
+            foreach (var pair in dataList.GroupBy(t => t.PersonalId))
+            {
+                CacheItemSet itemSet = InitContainer(pair.Key, periodTime);
+                InitCache(pair.ToList(), periodTime, isReplace);
+                itemSet.OnLoadSuccess();
+            }
+
         }
 
         /// <summary>

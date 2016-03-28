@@ -374,8 +374,8 @@ namespace ZyGames.Framework.Cache.Generic
         /// <returns></returns>
         protected bool TryLoadCache(TransReceiveParam receiveParam, int periodTime, bool isReplace)
         {
-            //todo: trace
-            var watch = RunTimeWatch.StartNew(string.Format("   Try load cache data:{0} replace:{1}", receiveParam.Schema.EntityType.FullName, isReplace));
+            //todo: trace TryLoadCache
+            var watch = RunTimeWatch.StartNew(string.Format("Try load cache data:{0}", receiveParam.Schema.EntityType.FullName));
             try
             {
                 List<T> dataList;
@@ -408,8 +408,8 @@ namespace ZyGames.Framework.Cache.Generic
         /// <returns></returns>
         protected bool TryLoadCache(string groupKey, TransReceiveParam receiveParam, int periodTime, bool isReplace)
         {
-            //todo: trace
-            var watch = RunTimeWatch.StartNew(string.Format("Try load cache data:{0}-{1} replace:{2}", receiveParam.Schema.EntityType.FullName, groupKey, isReplace));
+            //todo: trace TryLoadCache
+            var watch = RunTimeWatch.StartNew(string.Format("Try load cache data:{0}-{1}", receiveParam.Schema.EntityType.FullName, groupKey));
             try
             {
                 CacheItemSet itemSet = InitContainer(groupKey, periodTime);
@@ -426,7 +426,7 @@ namespace ZyGames.Framework.Cache.Generic
             }
             finally
             {
-                watch.Flush(true, 20);
+                watch.Flush(true, 200);
             }
             TraceLog.WriteError("Try load cache data:{0} error.", typeof(T).FullName);
             return false;
@@ -525,7 +525,6 @@ namespace ZyGames.Framework.Cache.Generic
         /// <returns></returns>
         protected virtual bool InitCache(List<T> dataList, int periodTime, bool isReplace)
         {
-            //isReplace = true;
             foreach (var data in dataList)
             {
                 if (data == null) continue;

@@ -36,10 +36,10 @@ namespace AccountServer.Handler
     {
         public ResponseData Excute(LoginInfo data)
         {
-            int userId;
-            var passportId = string.Empty;
-            RegType type = RegType.Other;
-            if( !string.IsNullOrEmpty(data.RetailUser) && !string.IsNullOrEmpty(data.RetailToken))
+            long userId;
+            int userType;
+            string passportId;
+            if (!string.IsNullOrEmpty(data.RetailUser) && !string.IsNullOrEmpty(data.RetailToken))
             {
                 ILogin login = LoginProxy.GetLogin(data.RetailID, data);
                 login.Password = DecodePassword(login.Password);
@@ -49,8 +49,9 @@ namespace AccountServer.Handler
                     if (login.CheckLogin())
                     {
                         watch.Check("GetResponse");
-                        userId = int.Parse(login.UserID);
+                        userId = long.Parse(login.UserID);
                         passportId = login.PassportID;
+                        userType = login.UserType;
                     }
                     else
                     {
@@ -71,17 +72,17 @@ namespace AccountServer.Handler
                 }
                 data.Pwd = DecodePassword(data.Pwd);
                 //快速登录
-                
-                userId = SnsManager.LoginByDevice(data.Pid, data.Pwd, data.DeviceID, out type, data.IsCustom);
-                //userId = SnsManager.LoginByDevice(data.Pid, data.Pwd, data.DeviceID, data.IsCustom);
+                RegType regType;
+                userId = SnsManager.LoginByDevice(data.Pid, data.Pwd, data.DeviceID, out regType, data.IsCustom);
                 if (userId <= 0)
                 {
                     throw new HandlerException(StateCode.PassworkError, StateDescription.PassworkError);
                 }
                 passportId = data.Pid;
+                userType = (int)regType;
             }
 
-            return AuthorizeLogin(userId, passportId, type);
+            return AuthorizeLogin(userId, passportId, userType);
         }
 
     }

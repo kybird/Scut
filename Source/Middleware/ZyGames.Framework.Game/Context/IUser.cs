@@ -41,19 +41,21 @@ namespace ZyGames.Framework.Game.Context
         /// <summary>
         /// user's token
         /// </summary>
-        [ProtoMember(1)]
         string Token { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        bool IsReplaced { get; set; }
 
         /// <summary>
         /// is online
         /// </summary>
         bool IsOnlining { get; }
-
         /// <summary>
         /// get userid
         /// </summary>
         /// <returns></returns>
-        int GetUserId();
+        long GetUserId();
         /// <summary>
         /// get passport
         /// </summary>
@@ -64,6 +66,11 @@ namespace ZyGames.Framework.Game.Context
         /// </summary>
         void RefleshOnlineDate();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="time"></param>
+        void SetExpired(DateTime time);
         /// <summary>
         /// Get Role ID
         /// </summary>

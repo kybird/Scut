@@ -2,6 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZyGames.Test", "ZyGames.Test\ZyGames.Test.csproj", "{39F6D350-5C58-435B-BAAA-C25A001FD26A}"
 EndProject
@@ -10,6 +11,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZyGames.Framework4.5", "..\..\Framework\ZyGames.Framework\ZyGames.Framework4.5.csproj", "{416E2E00-4064-4D7A-87A2-A649FF120274}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZyGames.Framework.Common4.5", "..\..\Framework\ZyGames.Framework.Common\ZyGames.Framework.Common4.5.csproj", "{E87A5049-85A1-436B-A5ED-2BC0A4E45BDB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZyGames.Test.LoadApp", "ZyGames.Test.LoadApp\ZyGames.Test.LoadApp.csproj", "{DD9753B6-3A77-40AE-972B-9FE0D30B1CE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,16 @@ Global
 		{E87A5049-85A1-436B-A5ED-2BC0A4E45BDB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E87A5049-85A1-436B-A5ED-2BC0A4E45BDB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E87A5049-85A1-436B-A5ED-2BC0A4E45BDB}.Release|x86.ActiveCfg = Release|Any CPU
+		{DD9753B6-3A77-40AE-972B-9FE0D30B1CE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD9753B6-3A77-40AE-972B-9FE0D30B1CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD9753B6-3A77-40AE-972B-9FE0D30B1CE1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DD9753B6-3A77-40AE-972B-9FE0D30B1CE1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DD9753B6-3A77-40AE-972B-9FE0D30B1CE1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DD9753B6-3A77-40AE-972B-9FE0D30B1CE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD9753B6-3A77-40AE-972B-9FE0D30B1CE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD9753B6-3A77-40AE-972B-9FE0D30B1CE1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DD9753B6-3A77-40AE-972B-9FE0D30B1CE1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DD9753B6-3A77-40AE-972B-9FE0D30B1CE1}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
