@@ -35,7 +35,7 @@ namespace AccountServer.Handler
     {
         public ResponseData Excute(IMEIInfo data)
         {
-            if (string.IsNullOrEmpty(data.IMEI))
+             if (string.IsNullOrEmpty(data.IMEI))
             {
                 throw new HandlerException(StateCode.Error, StateDescription.IMEINullError);
             }

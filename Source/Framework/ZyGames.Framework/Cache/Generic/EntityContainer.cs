@@ -706,6 +706,26 @@ namespace ZyGames.Framework.Cache.Generic
             yield return -1;
         }
 
+        public V GetRankEntity<V>(string key, Predicate<V> match) where V : RankEntity, new()
+        {
+            LoadingStatus loadStatus;
+            CacheList<V> cacheItems;
+            if (!TryGetCacheItem(key, true, out cacheItems, out loadStatus))
+            {
+                throw new Exception(string.Format("Not key:{0} items", key));
+            }
+            int index = 0;
+            foreach (var cacheItem in cacheItems)
+            {
+                index++;
+                if (match(cacheItem))
+                {
+                    return cacheItem;
+                }
+            }
+            return null;
+        }
+
         /// <summary>
         /// 
         /// </summary>

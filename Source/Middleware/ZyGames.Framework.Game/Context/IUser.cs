@@ -68,8 +68,8 @@ namespace ZyGames.Framework.Game.Context
         /// Get Role ID
         /// </summary>
         /// <returns></returns>
-        UInt64 GetRoleId();
+        Int64 GetRoleId();
 
-        void SetRoleId(UInt64 roleID);
+        void SetRoleId(Int64 roleID);
     }
 }

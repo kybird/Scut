@@ -781,7 +781,7 @@ namespace ZyGames.Framework.Game.Contract
         public int UserId { get { return User != null ? User.GetUserId() : 0; } }
 
         [JsonIgnore]
-        public UInt64 RoleId { get { return User != null ? User.GetRoleId() : 0; } }
+        public Int64 RoleId { get { return User != null ? User.GetRoleId() : 0; } }
 
         /// <summary>
         /// User

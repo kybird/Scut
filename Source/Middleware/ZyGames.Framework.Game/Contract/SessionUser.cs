@@ -91,7 +91,7 @@ namespace ZyGames.Framework.Game.Contract
         public TimeSpan OnlineInterval { get; set; }
 
         [ProtoMember(6)]
-        public UInt64 RoleId
+        public Int64 RoleId
         {
             get;
             set;
@@ -106,12 +106,12 @@ namespace ZyGames.Framework.Game.Contract
             return UserId;
         }
 
-        public UInt64 GetRoleId()
+        public Int64 GetRoleId()
         {
             return RoleId;
         }
 
-        public void SetRoleId(UInt64 roleID)
+        public void SetRoleId(Int64 roleID)
         {
             RoleId = roleID;
         }

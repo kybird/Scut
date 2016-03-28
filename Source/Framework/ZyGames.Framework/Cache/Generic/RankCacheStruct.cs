@@ -152,6 +152,12 @@ namespace ZyGames.Framework.Cache.Generic
             return DataContainer.GetRankNo<T>(key, match);
         }
 
+        public T GetRankEntity(string key, Predicate<T> match)
+        {
+            return DataContainer.GetRankEntity<T>(key, match);
+        }
+        
+
         /// <summary>
         /// Take rank items
         /// </summary>

@@ -415,7 +415,7 @@ namespace ZyGames.Framework.Data.MySql
                 }
                 command.AppendLine("");
                 string charSet = string.IsNullOrEmpty(ConnectionSetting.CharSet)
-                    ? " CharSet=gbk"
+                    ? " CharSet=utf8"
                     : " CharSet=" + ConnectionSetting.CharSet;
                 string autoincrement = identityNo > 0 ? " AUTO_INCREMENT=" + identityNo : "";
                 command.AppendFormat("){0} ENGINE=InnoDB{1};", autoincrement, charSet);
