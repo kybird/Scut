@@ -60,12 +60,12 @@ namespace ZyGames.Framework.Game.Sns
         /// <param name="token"></param>
         /// <param name="imei"></param>
         /// <param name="timeout"></param>
-        public AccountServerLogin(string url, string token, string imei, int timeout = 3000)
+        public AccountServerLogin(string token, string imei)
             : this()
         {
-            _url = url;
+            _url = GameEnvironment.Setting.AccountServerUrl;
             _imei = imei;
-            _timeout = timeout;
+            _timeout = 3000;
             Token = token;
         }
 
