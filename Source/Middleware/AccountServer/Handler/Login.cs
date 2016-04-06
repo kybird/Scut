@@ -36,6 +36,7 @@ namespace AccountServer.Handler
     {
         public ResponseData Excute(LoginInfo data)
         {
+            var watch2 = RunTimeWatch.StartNew("Login Start");
             long userId;
             int userType;
             string passportId;
@@ -61,7 +62,7 @@ namespace AccountServer.Handler
                 }
                 finally
                 {
-                    watch.Flush(true, 100);
+                    watch.Flush(false, 100);
                 }
             }
             else
@@ -70,10 +71,13 @@ namespace AccountServer.Handler
                 {
                     throw new HandlerException(StateCode.Error, StateDescription.PassworkLengthError);
                 }
+                
                 data.Pwd = DecodePassword(data.Pwd);
+                watch2.Check("DecodePassword finish");
                 //快速登录
                 RegType regType;
                 userId = SnsManager.LoginByDevice(data.Pid, data.Pwd, data.DeviceID, out regType, data.IsCustom);
+                watch2.Check("SQL finish");
                 if (userId <= 0)
                 {
                     throw new HandlerException(StateCode.PassworkError, StateDescription.PassworkError);
@@ -81,8 +85,9 @@ namespace AccountServer.Handler
                 passportId = data.Pid;
                 userType = (int)regType;
             }
-
-            return AuthorizeLogin(userId, passportId, userType);
+            ResponseData resp = AuthorizeLogin(userId, passportId, userType);
+            watch2.Flush(false, 0);
+            return resp;
         }
 
     }

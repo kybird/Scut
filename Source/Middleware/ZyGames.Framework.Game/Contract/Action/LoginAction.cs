@@ -197,6 +197,10 @@ namespace ZyGames.Framework.Game.Contract.Action
                         OnAuthorized(Sid, user);
                         return true;
                     }
+                    else
+                    {
+                        DoLoginFail(login);
+                    }
                 }
                 else
                 {

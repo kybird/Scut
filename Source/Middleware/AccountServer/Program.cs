@@ -24,6 +24,9 @@ namespace AccountServer
 
         static void Main(string[] args)
         {
+
+            EnvironmentSetting _setting = new EnvironmentSetting();
+
             try
             {
                 Console.CancelKeyPress += OnCancelKeyPress;
@@ -40,7 +43,7 @@ namespace AccountServer
                 HttpAsyncHandler.PageListen["/default.ashx"] = OnService;
 
                 var listenUrls = new List<string>();
-                var httpListener = new HttpAsyncHost(HttpAsyncHandler.Default, 16);
+                var httpListener = new HttpAsyncHost(HttpAsyncHandler.Default, 128);
                 var section = ConfigManager.Configger.GetFirstOrAddConfig<ProtocolSection>();
                 var httpHost = section.HttpHost;
                 var httpPort = section.HttpPort;
@@ -182,10 +185,11 @@ namespace AccountServer
                     TraceLog.WriteError("Request handle error:{0}", error);
                 }
                 var ms = watch.ElapsedMilliseconds;
-                if (ms > 20)
-                {
-                    TraceLog.Write("Request timeout:{0}ms", ms);
-                }
+                TraceLog.Write("Request timeout:{0}ms", ms);
+                //if (ms > 20)
+                //{
+                //    TraceLog.Write("Request timeout:{0}ms", ms);
+                //}
             }
 
         }

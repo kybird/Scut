@@ -542,7 +542,7 @@ namespace ZyGames.Framework.Cache.Generic
                 }
                 else
                 {
-                    DataContainer.TryAddGroup(personalId, key, data, periodTime, true);
+                    bool ret = DataContainer.TryAddGroup(personalId, key, data, periodTime, true);
                 }
                 if (!result)
                 {

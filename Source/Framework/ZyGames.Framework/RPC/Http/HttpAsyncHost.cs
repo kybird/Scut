@@ -173,7 +173,7 @@ namespace ZyGames.Framework.RPC.Http
                 catch (HttpListenerException hlex)
                 {
                     Error = hlex;
-                    TraceLog.WriteError("Http start listenning error:{0}", hlex);
+                    TraceLog.WriteError("Http start listenning error:{0}", hlex.Message);
                     return;
                 }
 

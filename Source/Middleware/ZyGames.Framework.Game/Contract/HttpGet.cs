@@ -839,7 +839,6 @@ namespace ZyGames.Framework.Game.Contract
             string sign = "";
             if (GetString("sign", ref sign))
             {
-                //_originalParam = HttpUtility.UrlDecode(_originalParam);
                 string attachParam = _originalParam + signKey;
                 string key = ZyGames.Framework.Common.Security.CryptoHelper.MD5_Encrypt(attachParam, Encoding.UTF8);
                 if (!string.IsNullOrEmpty(key) && key.ToLower() == sign)
