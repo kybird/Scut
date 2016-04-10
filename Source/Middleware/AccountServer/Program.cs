@@ -185,11 +185,11 @@ namespace AccountServer
                     TraceLog.WriteError("Request handle error:{0}", error);
                 }
                 var ms = watch.ElapsedMilliseconds;
-                TraceLog.Write("Request timeout:{0}ms", ms);
-                //if (ms > 20)
-                //{
-                //    TraceLog.Write("Request timeout:{0}ms", ms);
-                //}
+                
+                if (ms > 20)
+                {
+                    TraceLog.Write("Request timeout:{0}ms", ms);
+                }
             }
 
         }
