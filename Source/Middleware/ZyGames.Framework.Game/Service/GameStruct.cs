@@ -460,7 +460,7 @@ namespace ZyGames.Framework.Game.Service
 
         /// <summary>
         /// 
-        /// </summary>
+        /// </summary>&
         /// <returns></returns>
         protected virtual string BuildJsonPack()
         {

@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 using System;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Web;
@@ -70,6 +71,13 @@ namespace ZyGames.Framework.Game.Contract
         /// <returns></returns>
         bool TryDecodePackage(HttpContext context, out RequestPackage package);
 
+
+        // temporay for adapt ProtoBuf implementa
+        bool TryDecodePackage(Stream stream, out RequestPackage package, out int statusCode, Encoding encoding);
+
+
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -93,6 +101,14 @@ namespace ZyGames.Framework.Game.Contract
     /// </summary>
     public class ScutActionDispatcher : IActionDispatcher
     {
+        public bool TryDecodePackage(Stream stream, out RequestPackage package, out int statusCode, Encoding encoding)
+        {
+            statusCode = (int)HttpStatusCode.OK;
+            string data = "";
+
+            var packageReader = new PackageReader(data, stream, encoding);
+            return TryBuildPackage(packageReader, out package);
+        }
 
         /// <summary>
         /// Decode request package

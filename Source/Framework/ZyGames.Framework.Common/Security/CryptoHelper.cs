@@ -319,6 +319,8 @@ namespace ZyGames.Framework.Common.Security
             return Encoding.Default.GetString(memoryStream.ToArray());
         }
 
+        
+
         /// <summary>
         /// Des encrypt
         /// </summary>
