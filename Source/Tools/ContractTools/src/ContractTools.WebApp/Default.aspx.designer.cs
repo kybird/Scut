@@ -1,10 +1,10 @@
 ﻿//------------------------------------------------------------------------------
-// <自动生成>
-//     此代码由工具生成。
+// <자동 생성됨>
+//     이 코드는 도구를 사용하여 생성되었습니다.
 //
-//     对此文件的更改可能会导致不正确的行为，并且如果
-//     重新生成代码，这些更改将会丢失。 
-// </自动生成>
+//     파일 내용을 변경하면 잘못된 동작이 발생할 수 있으며, 코드를 다시 생성하면
+//     이러한 변경 내용이 손실됩니다. 
+// </자동 생성됨>
 //------------------------------------------------------------------------------
 
 namespace ContractTools.WebApp {
@@ -13,362 +13,362 @@ namespace ContractTools.WebApp {
     public partial class Default {
         
         /// <summary>
-        /// form1 控件。
+        /// form1 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// hlSolution 控件。
+        /// hlSolution 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlSolution;
         
         /// <summary>
-        /// hlVersion 控件。
+        /// hlVersion 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlVersion;
         
         /// <summary>
-        /// hlEnum 控件。
+        /// hlEnum 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlEnum;
         
         /// <summary>
-        /// hlAgreement 控件。
+        /// hlAgreement 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlAgreement;
         
         /// <summary>
-        /// hlContract 控件。
+        /// hlContract 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlContract;
         
         /// <summary>
-        /// hlContractEdit 控件。
+        /// hlContractEdit 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlContractEdit;
         
         /// <summary>
-        /// hlContractCopy 控件。
+        /// hlContractCopy 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlContractCopy;
         
         /// <summary>
-        /// hlTopEdit 控件。
+        /// hlTopEdit 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hlTopEdit;
         
         /// <summary>
-        /// ddlSolution 控件。
+        /// ddlSolution 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSolution;
         
         /// <summary>
-        /// ddVersion 控件。
+        /// ddVersion 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddVersion;
         
         /// <summary>
-        /// ddlAgreement 控件。
+        /// ddlAgreement 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlAgreement;
         
         /// <summary>
-        /// ddContract 控件。
+        /// ddContract 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddContract;
         
         /// <summary>
-        /// ddParamType 控件。
+        /// ddParamType 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddParamType;
         
         /// <summary>
-        /// ddFieldType 控件。
+        /// ddFieldType 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddFieldType;
         
         /// <summary>
-        /// ddResponseParams 控件。
+        /// ddResponseParams 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddResponseParams;
         
         /// <summary>
-        /// txtField 控件。
+        /// txtField 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtField;
         
         /// <summary>
-        /// ckRequired 控件。
+        /// ckRequired 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox ckRequired;
         
         /// <summary>
-        /// txtRemark 控件。
+        /// txtRemark 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRemark;
         
         /// <summary>
-        /// btnParamAdd 控件。
+        /// btnParamAdd 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnParamAdd;
         
         /// <summary>
-        /// btnParamCopy 控件。
+        /// btnParamCopy 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnParamCopy;
         
         /// <summary>
-        /// btnParamRemove 控件。
+        /// btnParamRemove 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnParamRemove;
         
         /// <summary>
-        /// ddParamCopyFrom 控件。
+        /// ddParamCopyFrom 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddParamCopyFrom;
         
         /// <summary>
-        /// ddParamCopyTo 控件。
+        /// ddParamCopyTo 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddParamCopyTo;
         
         /// <summary>
-        /// gvReqParams 控件。
+        /// gvReqParams 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvReqParams;
         
         /// <summary>
-        /// gvRespParams 控件。
+        /// gvRespParams 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvRespParams;
         
         /// <summary>
-        /// btnNoCompalte 控件。
+        /// btnNoCompalte 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnNoCompalte;
         
         /// <summary>
-        /// btnCompalte 控件。
+        /// btnCompalte 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCompalte;
         
         /// <summary>
-        /// ckSelfAction 控件。
+        /// ckSelfAction 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox ckSelfAction;
         
         /// <summary>
-        /// ddServerCodeType 控件。
+        /// ddServerCodeType 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddServerCodeType;
         
         /// <summary>
-        /// btnExportServer 控件。
+        /// btnExportServer 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnExportServer;
         
         /// <summary>
-        /// btnExportAllServer 控件。
+        /// btnExportAllServer 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnExportAllServer;
         
         /// <summary>
-        /// txtServerCode 控件。
+        /// txtServerCode 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtServerCode;
         
         /// <summary>
-        /// ddClientCodeType 控件。
+        /// ddClientCodeType 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddClientCodeType;
         
         /// <summary>
-        /// btnExportClient 控件。
+        /// btnExportClient 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnExportClient;
         
         /// <summary>
-        /// btnExportAllClient 控件。
+        /// btnExportAllClient 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnExportAllClient;
         
         /// <summary>
-        /// txtClientCode 控件。
+        /// txtClientCode 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtClientCode;
         
         /// <summary>
-        /// lblEnumDescp 控件。
+        /// lblEnumDescp 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblEnumDescp;
         
         /// <summary>
-        /// ifrTest 控件。
+        /// ifrTest 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlIframe ifrTest;
         
         /// <summary>
-        /// ifrClientConfig 控件。
+        /// ifrClientConfig 컨트롤입니다.
         /// </summary>
         /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// 자동 생성 필드입니다.
+        /// 수정하려면 디자이너 파일에서 코드 숨김 파일로 필드 선언을 이동하십시오.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlIframe ifrClientConfig;
     }

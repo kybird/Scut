@@ -1,13 +1,19 @@
 ﻿using System;
 using UnityEngine;
 using ZyGames.Framework.Common.Serialization;
+using Protobuf;
 
 public class Action##ID## : GameAction
 {
+##Request##
+
+##Response##
+
+
     private ActionResult actionResult;
 
     public Action##ID##()
-        : base((int)ActionType.Regist)
+        : base((int)##ID##)
     {
     }
 
@@ -15,17 +21,17 @@ public class Action##ID## : GameAction
     {
         if (actionParam.HasValue)
         {
-            //사용자지정 요청매개변수 설정 
-            //T requestPack = actionParam.GetValue<T>();
-            //byte[] data = ProtoBufUtils.Serialize(requestPack);
-            //writer.SetBodyData(data);
+			//사용자지정 요청매개변수 설정 
+            RequestPack requestPack = actionParam.GetValue<RequestPack>();
+            byte[] data = ProtoBufUtils.Serialize(requestPack);
+            writer.SetBodyData(data);
         }
     }
 
     protected override void DecodePackage(NetReader reader)
     {
-        // 서버가 보낸 패킷을 해석
-        T responseData = ProtoBufUtils.Deserialize<T>(reader.Buffer);
+		// 서버가 보낸 패킷을 해석
+        ResponsePack responseData = ProtoBufUtils.Deserialize<ResponsePack>(reader.Buffer);
         actionResult = new ActionResult(responseData);
 
     }

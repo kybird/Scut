@@ -98,7 +98,7 @@ namespace ContractTools.WebApp
                         if (model != null)
                         {
                             txtID.Text = model.ID.ToString();
-                            txtDescption.Text = model.Descption;
+                            txtDescription.Text = model.Descption;
                             ddlAgreement.SelectedValue = model.AgreementID.ToString();
                             ddVersion.SelectedValue = model.VerID.ToString();
                             btnDelete.Visible = true;
@@ -123,7 +123,7 @@ namespace ContractTools.WebApp
             {
                 ContractModel model = new ContractModel();
                 model.ID = Convert.ToInt32((string)txtID.Text.Trim());
-                model.Descption = txtDescption.Text.Trim();
+                model.Descption = txtDescription.Text.Trim();
                 model.ParentID = 1;
                 model.SlnID = SlnID;
                 model.VerID = Convert.ToInt32(ddVersion.Text.Trim());

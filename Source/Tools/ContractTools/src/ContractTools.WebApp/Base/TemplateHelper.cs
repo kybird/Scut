@@ -54,6 +54,11 @@ namespace ContractTools.WebApp.Base
             return (isLower ? first.ToLower() : first.ToUpper()) + str.Substring(1);
         }
 
+        public static string ToProtoMemberVarName(string name)
+        {
+            return string.Format("_{0}", ToFistWordCase(name, true));
+        }
+
         /// <summary>
         /// 转换为成员变量名
         /// </summary>
@@ -270,7 +275,7 @@ namespace ContractTools.WebApp.Base
 
         public static string FromatClientCsharpTemp(string content, int contractId, List<ParamInfoModel> responseParams, List<ParamInfoModel> requestParams, string title)
         {
-            string[] expressList = new string[] { "##ID##", "##Description##", "##Parameter##", "##Fixed##" };
+            string[] expressList = new string[] { "##ID##", "##Description##", "##Parameter##", "##Fixed##", "##Request##", "##Response##" };
             foreach (string exp in expressList)
             {
                 StringBuilder fieldBuilder = new StringBuilder();
@@ -296,6 +301,137 @@ namespace ContractTools.WebApp.Base
                             fieldBuilder.Append(ToFistWordCase(paramInfo.Field));
                         }
                     }
+                }
+                else if (fieldBuilder.ToString() == "Request")
+                {
+                    
+                    fieldBuilder.Remove(0, fieldBuilder.Length);
+                    StringBuilder requestPackBuilder = new StringBuilder();
+                    BuildProtoBufClassCode(requestPackBuilder, GetSpaceIndent(2, 0), "Protobuf", "RequestPack");
+                    requestPackBuilder.Append(GetSpaceIndent(1, 0));
+                    StringBuilder memberBuilder = new StringBuilder();
+                    
+                    int idx = 101;
+                    foreach (var paramInfo in requestParams)
+                    {
+                        string desc = paramInfo.Descption + paramInfo.Remark;
+                        string spaceString = GetSpaceIndent(2, 1);
+
+                        FieldType fieldType = paramInfo.FieldType;
+                        if (fieldType == FieldType.Void) continue;
+
+                        BuildProtoBufMemberCode(requestPackBuilder, spaceString, paramInfo, idx++);
+                    }
+
+                    string space = GetSpaceIndent(2, 0);
+                    fieldBuilder.AppendLine();
+                    fieldBuilder.Append(requestPackBuilder);
+                    fieldBuilder.AppendLine();
+                    fieldBuilder.Append(space);
+                    fieldBuilder.AppendLine("}");
+                }
+                else if (fieldBuilder.ToString() == "Response")
+                {
+                    int idx = 101;
+                    int depth = 0;
+                    string listVar = "_dsItemList";
+                    string className;
+                    int recordIndex = 0;
+                    int[] indexList = new int[forVarChars.Length];
+                    fieldBuilder.Remove(0, fieldBuilder.Length);
+                    var list = new List<ParamInfoModel>(responseParams.Where(t => t.FieldType != FieldType.Void));
+
+                    var classList = new List<StringBuilder>();
+                    var classStack = new Stack<StringBuilder>();
+                    var idxStack = new Stack<int>();
+                    StringBuilder respPackBuilder = new StringBuilder();
+                    BuildClassCode(respPackBuilder, GetSpaceIndent(2, 0), "ResponsePack", "ResponsePack");
+
+                    foreach( var paramInfo in list)
+                    {
+                        
+                        string descp = paramInfo.Descption + paramInfo.Remark;
+                        string spaceString = GetSpaceIndent(2, depth + 1);
+                        FieldType fieldType = paramInfo.FieldType;
+                        if (fieldType == FieldType.Void) continue; // ?? 필요없지않나.
+                        if (FieldType.Record.Equals(fieldType) || FieldType.SigleRecord.Equals(fieldType))
+                        {
+                            if (depth < indexList.Length)
+                            {
+                                recordIndex = indexList[depth];
+                                recordIndex++;
+                                indexList[depth] = recordIndex;
+                            }
+
+                            string memberName = string.IsNullOrEmpty(paramInfo.Field) ? listVar + "_" + recordIndex : paramInfo.Field + "List";
+                            listVar = listVar + "_" + recordIndex;
+                            className = string.IsNullOrEmpty(paramInfo.Field)
+                                ? listVar.Replace("_dsItemList", "Class")
+                                : paramInfo.Field;
+
+                            if (depth > 0)
+                            {
+                                var classMemberBuilder = classStack.Peek();
+                                BuildProtoBufMemberCodeByList(classMemberBuilder, GetSpaceIndent(2, depth), className, descp, memberName, idx++);
+                            }
+                            else
+                            {
+                                BuildProtoBufMemberCodeByList(respPackBuilder, spaceString, className, descp, memberName, idx++);
+                            }
+                            var classBuilder = new StringBuilder();
+                            BuildProtoBufClassCode(classBuilder, GetSpaceIndent(2, 0), descp, className);
+                            classBuilder.Append(GetSpaceIndent(1, 0));
+                            classStack.Push(classBuilder);
+                            idxStack.Push(idx);
+                            depth++;
+                            
+                            idx = (className.Count(x => x == '_') * 1000) + 1;
+                            
+                            continue;
+                        }
+                        if (FieldType.End.Equals(fieldType))
+                        {
+                            listVar = listVar.Substring(0, listVar.LastIndexOf('_'));
+
+                            var classMemberBuilder = classStack.Pop();
+                            idx = idxStack.Pop();
+                            classMemberBuilder.AppendLine("");
+                            classMemberBuilder.Append(GetSpaceIndent(2, 0));
+                            classMemberBuilder.AppendLine("}");
+                            classList.Add(classMemberBuilder);
+                            depth--;
+                            
+                            continue;
+                        }
+
+                        if (depth>0)
+                        {
+                            var classMemberBuilder = classStack.Peek();
+                            BuildProtoBufMemberCode(classMemberBuilder, GetSpaceIndent(2, 1), paramInfo, idx++);
+                            continue;
+                        }
+
+                        if (paramInfo.ParamType == 2)
+                        {
+                            BuildProtoBufMemberCode(respPackBuilder, spaceString, paramInfo, idx++);
+                        }
+                    }
+
+                    string space = GetSpaceIndent(2, 0);
+                    fieldBuilder.AppendLine();
+                    fieldBuilder.Append(space);
+                    
+                    foreach(var builder in classList)
+                    {
+                        fieldBuilder.Append(builder);
+                        fieldBuilder.AppendLine();
+                    }
+
+                    fieldBuilder.Append(respPackBuilder);
+                    fieldBuilder.AppendLine();
+                    fieldBuilder.Append(space);
+                    fieldBuilder.AppendLine("}");
+                    fieldBuilder.Append(space);
                 }
                 else if (fieldBuilder.ToString() == "Fixed")
                 {
@@ -1421,6 +1557,26 @@ namespace ContractTools.WebApp.Base
             classBuilder.Append(spaceString);
         }
 
+
+        private static void BuildProtoBufClassCode(StringBuilder classBuilder, string spaceString, string descp, string className)
+        {
+            classBuilder.Append(spaceString);
+            classBuilder.AppendLine("/// <summary>");
+            classBuilder.Append(spaceString);
+            classBuilder.AppendLine("/// " + descp.Replace("\r\n", ","));
+            classBuilder.Append(spaceString);
+            classBuilder.AppendLine("/// </summary>");
+            classBuilder.Append(spaceString);
+            classBuilder.AppendLine("[ProtoContract]");
+            classBuilder.Append(spaceString);
+            classBuilder.AppendFormat("public class {0}", className);
+            classBuilder.AppendLine("");
+            classBuilder.Append(spaceString);
+            classBuilder.AppendLine("{");
+            classBuilder.Append(spaceString);
+        }
+
+
         private static void BuildMemberCodeByList(StringBuilder memberBuilder, string spaceString, string className, string descp, string listVar, bool isClassMember = false)
         {
             memberBuilder.AppendLine("/// <summary>");
@@ -1440,6 +1596,22 @@ namespace ContractTools.WebApp.Base
                 memberBuilder.AppendLine(";");
             }
             memberBuilder.Append(spaceString);
+        }
+
+        private static void BuildProtoBufMemberCodeByList(StringBuilder memberBuilder, string spaceString, string className, string descp, string listVar, int idx)
+        {
+            memberBuilder.AppendLine("/// <summary>");
+            memberBuilder.Append(spaceString);
+            memberBuilder.AppendLine("/// " + descp.Replace("\r\n", ","));
+            memberBuilder.Append(spaceString);
+            memberBuilder.AppendLine("/// </summary>");
+            memberBuilder.Append(spaceString);
+            memberBuilder.AppendFormat("[ProtoMember({0})]\n", idx);
+            memberBuilder.Append(spaceString);
+            memberBuilder.AppendFormat("public List<{1}> {0}", listVar, className);
+            //memberBuilder.AppendLine(" { get; set; }");
+            memberBuilder.Append(spaceString);
+
         }
 
         private static void BuildMemberCode(StringBuilder memberBuilder, string spaceString, ParamInfoModel paramInfo, bool isClassMember = false)
@@ -1467,6 +1639,26 @@ namespace ContractTools.WebApp.Base
             }
             memberBuilder.Append(spaceString);
         }
+
+        private static void BuildProtoBufMemberCode(StringBuilder memberBuilder, string spaceString, ParamInfoModel paramInfo, int idx)
+        {
+            string descp = paramInfo.Descption + paramInfo.Remark;
+            memberBuilder.AppendLine("/// <summary>");
+            memberBuilder.Append(spaceString);
+            memberBuilder.AppendLine("/// " + descp.Replace("\r\n", ","));
+            memberBuilder.Append(spaceString);
+            memberBuilder.AppendLine("/// </summary>");
+            memberBuilder.Append(spaceString);
+            memberBuilder.AppendFormat("[ProtoMember({0})]\n", idx);
+            memberBuilder.Append(spaceString);
+            memberBuilder.AppendFormat("public {0} {1}",
+            paramInfo.FieldType == FieldType.Password ? "string" : paramInfo.FieldType.ToString().ToLower(),
+                    ToProtoMemberVarName(paramInfo.Field));
+            memberBuilder.AppendLine(";");
+            
+            memberBuilder.Append(spaceString);
+        }
+
 
         private static string SetValueRange(int minValue, int maxValue)
         {
@@ -1772,3 +1964,25 @@ namespace ContractTools.WebApp.Base
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
