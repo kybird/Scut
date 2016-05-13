@@ -304,134 +304,14 @@ namespace ContractTools.WebApp.Base
                 }
                 else if (fieldBuilder.ToString() == "Request")
                 {
-                    
-                    fieldBuilder.Remove(0, fieldBuilder.Length);
-                    StringBuilder requestPackBuilder = new StringBuilder();
-                    BuildProtoBufClassCode(requestPackBuilder, GetSpaceIndent(2, 0), "Protobuf", "RequestPack");
-                    requestPackBuilder.Append(GetSpaceIndent(1, 0));
-                    StringBuilder memberBuilder = new StringBuilder();
-                    
-                    int idx = 101;
-                    foreach (var paramInfo in requestParams)
-                    {
-                        string desc = paramInfo.Descption + paramInfo.Remark;
-                        string spaceString = GetSpaceIndent(2, 1);
 
-                        FieldType fieldType = paramInfo.FieldType;
-                        if (fieldType == FieldType.Void) continue;
+                    BuildProtoBufRequestPack(fieldBuilder, requestParams);
 
-                        BuildProtoBufMemberCode(requestPackBuilder, spaceString, paramInfo, idx++);
-                    }
-
-                    string space = GetSpaceIndent(2, 0);
-                    fieldBuilder.AppendLine();
-                    fieldBuilder.Append(requestPackBuilder);
-                    fieldBuilder.AppendLine();
-                    fieldBuilder.Append(space);
-                    fieldBuilder.AppendLine("}");
                 }
                 else if (fieldBuilder.ToString() == "Response")
                 {
-                    int idx = 101;
-                    int depth = 0;
-                    string listVar = "_dsItemList";
-                    string className;
-                    int recordIndex = 0;
-                    int[] indexList = new int[forVarChars.Length];
-                    fieldBuilder.Remove(0, fieldBuilder.Length);
-                    var list = new List<ParamInfoModel>(responseParams.Where(t => t.FieldType != FieldType.Void));
-
-                    var classList = new List<StringBuilder>();
-                    var classStack = new Stack<StringBuilder>();
-                    var idxStack = new Stack<int>();
-                    StringBuilder respPackBuilder = new StringBuilder();
-                    BuildClassCode(respPackBuilder, GetSpaceIndent(2, 0), "ResponsePack", "ResponsePack");
-
-                    foreach( var paramInfo in list)
-                    {
-                        
-                        string descp = paramInfo.Descption + paramInfo.Remark;
-                        string spaceString = GetSpaceIndent(2, depth + 1);
-                        FieldType fieldType = paramInfo.FieldType;
-                        if (fieldType == FieldType.Void) continue; // ?? 필요없지않나.
-                        if (FieldType.Record.Equals(fieldType) || FieldType.SigleRecord.Equals(fieldType))
-                        {
-                            if (depth < indexList.Length)
-                            {
-                                recordIndex = indexList[depth];
-                                recordIndex++;
-                                indexList[depth] = recordIndex;
-                            }
-
-                            string memberName = string.IsNullOrEmpty(paramInfo.Field) ? listVar + "_" + recordIndex : paramInfo.Field + "List";
-                            listVar = listVar + "_" + recordIndex;
-                            className = string.IsNullOrEmpty(paramInfo.Field)
-                                ? listVar.Replace("_dsItemList", "Class")
-                                : paramInfo.Field;
-
-                            if (depth > 0)
-                            {
-                                var classMemberBuilder = classStack.Peek();
-                                BuildProtoBufMemberCodeByList(classMemberBuilder, GetSpaceIndent(2, depth), className, descp, memberName, idx++);
-                            }
-                            else
-                            {
-                                BuildProtoBufMemberCodeByList(respPackBuilder, spaceString, className, descp, memberName, idx++);
-                            }
-                            var classBuilder = new StringBuilder();
-                            BuildProtoBufClassCode(classBuilder, GetSpaceIndent(2, 0), descp, className);
-                            classBuilder.Append(GetSpaceIndent(1, 0));
-                            classStack.Push(classBuilder);
-                            idxStack.Push(idx);
-                            depth++;
-                            
-                            idx = (className.Count(x => x == '_') * 1000) + 1;
-                            
-                            continue;
-                        }
-                        if (FieldType.End.Equals(fieldType))
-                        {
-                            listVar = listVar.Substring(0, listVar.LastIndexOf('_'));
-
-                            var classMemberBuilder = classStack.Pop();
-                            idx = idxStack.Pop();
-                            classMemberBuilder.AppendLine("");
-                            classMemberBuilder.Append(GetSpaceIndent(2, 0));
-                            classMemberBuilder.AppendLine("}");
-                            classList.Add(classMemberBuilder);
-                            depth--;
-                            
-                            continue;
-                        }
-
-                        if (depth>0)
-                        {
-                            var classMemberBuilder = classStack.Peek();
-                            BuildProtoBufMemberCode(classMemberBuilder, GetSpaceIndent(2, 1), paramInfo, idx++);
-                            continue;
-                        }
-
-                        if (paramInfo.ParamType == 2)
-                        {
-                            BuildProtoBufMemberCode(respPackBuilder, spaceString, paramInfo, idx++);
-                        }
-                    }
-
-                    string space = GetSpaceIndent(2, 0);
-                    fieldBuilder.AppendLine();
-                    fieldBuilder.Append(space);
+                    BuildProtoBufResponsePack(fieldBuilder, ref responseParams);
                     
-                    foreach(var builder in classList)
-                    {
-                        fieldBuilder.Append(builder);
-                        fieldBuilder.AppendLine();
-                    }
-
-                    fieldBuilder.Append(respPackBuilder);
-                    fieldBuilder.AppendLine();
-                    fieldBuilder.Append(space);
-                    fieldBuilder.AppendLine("}");
-                    fieldBuilder.Append(space);
                 }
                 else if (fieldBuilder.ToString() == "Fixed")
                 {
@@ -486,6 +366,137 @@ namespace ContractTools.WebApp.Base
 
             }
             return ReplaceClientCshparCallback(content, responseParams);
+        }
+
+        private static void BuildProtoBufResponsePack(StringBuilder fieldBuilder, ref List<ParamInfoModel> responseParams)
+        {
+            int idx = 101;
+            int depth = 0;
+            string listVar = "_dsItemList";
+            string className;
+            int recordIndex = 0;
+            int[] indexList = new int[forVarChars.Length];
+            fieldBuilder.Remove(0, fieldBuilder.Length);
+            var list = new List<ParamInfoModel>(responseParams.Where(t => t.FieldType != FieldType.Void));
+
+            var classList = new List<StringBuilder>();
+            var classStack = new Stack<StringBuilder>();
+            var idxStack = new Stack<int>();
+            StringBuilder respPackBuilder = new StringBuilder();
+            BuildClassCode(respPackBuilder, GetSpaceIndent(2, 0), "ResponsePack", "ResponsePack");
+
+            foreach (var paramInfo in list)
+            {
+
+                string descp = paramInfo.Descption + paramInfo.Remark;
+                string spaceString = GetSpaceIndent(2, depth + 1);
+                FieldType fieldType = paramInfo.FieldType;
+                if (fieldType == FieldType.Void) continue; // ?? 필요없지않나.
+                if (FieldType.Record.Equals(fieldType) || FieldType.SigleRecord.Equals(fieldType))
+                {
+                    if (depth < indexList.Length)
+                    {
+                        recordIndex = indexList[depth];
+                        recordIndex++;
+                        indexList[depth] = recordIndex;
+                    }
+
+                    string memberName = string.IsNullOrEmpty(paramInfo.Field) ? listVar + "_" + recordIndex : paramInfo.Field + "List";
+                    listVar = listVar + "_" + recordIndex;
+                    className = string.IsNullOrEmpty(paramInfo.Field)
+                        ? listVar.Replace("_dsItemList", "Class")
+                        : paramInfo.Field;
+
+                    if (depth > 0)
+                    {
+                        var classMemberBuilder = classStack.Peek();
+                        BuildProtoBufMemberCodeByList(classMemberBuilder, GetSpaceIndent(2, depth), className, descp, memberName, idx++);
+                    }
+                    else
+                    {
+                        BuildProtoBufMemberCodeByList(respPackBuilder, spaceString, className, descp, memberName, idx++);
+                    }
+                    var classBuilder = new StringBuilder();
+                    BuildProtoBufClassCode(classBuilder, GetSpaceIndent(2, 0), descp, className);
+                    classBuilder.Append(GetSpaceIndent(1, 0));
+                    classStack.Push(classBuilder);
+                    idxStack.Push(idx);
+                    depth++;
+
+                    idx = (className.Count(x => x == '_') * 1000) + 1;
+
+                    continue;
+                }
+                if (FieldType.End.Equals(fieldType))
+                {
+                    listVar = listVar.Substring(0, listVar.LastIndexOf('_'));
+
+                    var classMemberBuilder = classStack.Pop();
+                    idx = idxStack.Pop();
+                    classMemberBuilder.AppendLine("");
+                    classMemberBuilder.Append(GetSpaceIndent(2, 0));
+                    classMemberBuilder.AppendLine("}");
+                    classList.Add(classMemberBuilder);
+                    depth--;
+
+                    continue;
+                }
+
+                if (depth > 0)
+                {
+                    var classMemberBuilder = classStack.Peek();
+                    BuildProtoBufMemberCode(classMemberBuilder, GetSpaceIndent(2, 1), paramInfo, idx++);
+                    continue;
+                }
+
+                if (paramInfo.ParamType == 2)
+                {
+                    BuildProtoBufMemberCode(respPackBuilder, spaceString, paramInfo, idx++);
+                }
+            }
+
+            string space = GetSpaceIndent(2, 0);
+            fieldBuilder.AppendLine();
+            fieldBuilder.Append(space);
+
+            foreach (var builder in classList)
+            {
+                fieldBuilder.Append(builder);
+                fieldBuilder.AppendLine();
+            }
+
+            fieldBuilder.Append(respPackBuilder);
+            fieldBuilder.AppendLine();
+            fieldBuilder.Append(space);
+            fieldBuilder.AppendLine("}");
+            fieldBuilder.Append(space);
+        }
+        private static void BuildProtoBufRequestPack(StringBuilder fieldBuilder, List<ParamInfoModel> requestParams)
+        {
+            fieldBuilder.Remove(0, fieldBuilder.Length);
+            StringBuilder requestPackBuilder = new StringBuilder();
+            BuildProtoBufClassCode(requestPackBuilder, GetSpaceIndent(2, 0), "Protobuf", "RequestPack");
+            requestPackBuilder.Append(GetSpaceIndent(1, 0));
+            StringBuilder memberBuilder = new StringBuilder();
+
+            int idx = 101;
+            foreach (var paramInfo in requestParams)
+            {
+                string desc = paramInfo.Descption + paramInfo.Remark;
+                string spaceString = GetSpaceIndent(2, 1);
+
+                FieldType fieldType = paramInfo.FieldType;
+                if (fieldType == FieldType.Void) continue;
+
+                BuildProtoBufMemberCode(requestPackBuilder, spaceString, paramInfo, idx++);
+            }
+
+            string space = GetSpaceIndent(2, 0);
+            fieldBuilder.AppendLine();
+            fieldBuilder.Append(requestPackBuilder);
+            fieldBuilder.AppendLine();
+            fieldBuilder.Append(space);
+            fieldBuilder.AppendLine("}");
         }
         /// <summary>
         /// 缩进字符
@@ -1390,7 +1401,7 @@ namespace ContractTools.WebApp.Base
         /// <returns></returns>
         public static string FormatTemp(string content, int contractId, List<ParamInfoModel> paramList, List<ParamInfoModel> reqParams, SolutionModel slnRecord, string title)
         {
-            string[] expressList = new string[] { "##ID##", "##Description##", "##Field##", "##Namespace##", "##RefNamespace##" };
+            string[] expressList = new string[] { "##ID##", "##Description##", "##Field##", "##Namespace##", "##RefNamespace##", "##Request##", "##Response##" };
             foreach (string exp in expressList)
             {
                 StringBuilder fieldBuilder = new StringBuilder();
@@ -1416,6 +1427,14 @@ namespace ContractTools.WebApp.Base
                 {
                     fieldBuilder.Remove(0, fieldBuilder.Length);
                     fieldBuilder.Append(slnRecord == null ? "" : slnRecord.RefNamespace);
+                }
+                else if (fieldBuilder.ToString() == "Request")
+                {
+                    TemplateHelper.BuildProtoBufRequestPack(fieldBuilder, reqParams);
+                }
+                else if (fieldBuilder.ToString() == "Response")
+                {
+                    TemplateHelper.BuildProtoBufResponsePack(fieldBuilder, ref paramList);
                 }
 
                 else if (fieldBuilder.ToString() == "Field")

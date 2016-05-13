@@ -4,12 +4,19 @@ using System.Collections.Generic;
 
 namespace ##Namespace##
 {
+##Request##
+
+
+##Response##
+
+	Request _requestPack;
+	Response _responsePack;
    
     /// <summary>
     /// ##Description##
     /// </summary>
     /// <remarks>BaseStruct클래스를상속: 신분증명없는요청을허용;AuthorizeAction:신분증명이필요한요청</remarks>
-    public class Action##ID## : AuthorizeAction
+    public class Action##ID## : ProtoAuthAction
     {
         public Action##ID##(ActionGetter actionGetter)
             : base((short)##ID##, actionGetter)
@@ -32,9 +39,20 @@ namespace ##Namespace##
         public override bool GetUrlElement()
         {
             byte[] data = (byte[])actionGetter.GetMessage();
-            //use protobuf deserialize
-            //T t = ProtoBufUtils.Deserialize<T>(data);
+			if (data.Length > 0)
+			{
+				_requestPack = ProtoBufUtils.Deserialize<Request>(data);
+				_requestPack._roleName = _requestPack._roleName.Trim();
+				return true;
+			}
+
+			return false;
         }
+
+		protected override bool IgnoreActionId
+		{
+			get { return true; }
+		}
 
         /// <summary>
         /// business logic process
@@ -42,7 +60,7 @@ namespace ##Namespace##
         /// <returns>false:stop following mothod and return error</returns>
         public override bool TakeAction()
         {
-            // in here process logic
+		    // in here process logic
             return true;
         }
 
@@ -51,9 +69,11 @@ namespace ##Namespace##
         /// </summary>
         public override byte[] BuildResponsePack()
         {
-            //ProtoBufUtils.Serialize(resutObject);
-            return new byte[0];
+            return ProtoBufUtils.Serialize(_responsePack);
         }
+
+
+
 
     }
 }
