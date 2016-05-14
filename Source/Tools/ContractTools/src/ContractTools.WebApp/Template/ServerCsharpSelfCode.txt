@@ -41,8 +41,6 @@ namespace ##Namespace##
             byte[] data = (byte[])actionGetter.GetMessage();
 			if (data.Length > 0)
 			{
-				_requestPack = ProtoBufUtils.Deserialize<Request>(data);
-				_requestPack._roleName = _requestPack._roleName.Trim();
 				return true;
 			}
 
