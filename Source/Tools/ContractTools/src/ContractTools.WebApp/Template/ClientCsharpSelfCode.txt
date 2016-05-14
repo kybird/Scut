@@ -24,6 +24,7 @@ public class Action##ID## : GameAction
 			//사용자지정 요청매개변수 설정 
             RequestPack requestPack = actionParam.GetValue<RequestPack>();
             byte[] data = ProtoBufUtils.Serialize(requestPack);
+			writer.SetProtoActionID(ActionId);   
             writer.SetBodyData(data);
         }
     }

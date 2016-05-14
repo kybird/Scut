@@ -39,11 +39,12 @@ namespace ##Namespace##
         public override bool GetUrlElement()
         {
             byte[] data = (byte[])actionGetter.GetMessage();
-			if (data.Length > 0)
+			if (data.Length >0)
 			{
+				_requestPack = ProtoBufUtils.Deserialize<Request>(data);
+
 				return true;
 			}
-
 			return false;
         }
 
