@@ -70,7 +70,7 @@ namespace ##Namespace##
         /// <summary>
         /// data structure that send to client
         /// </summary>
-        public override byte[] BuildResponsePack()
+        protected override byte[] BuildResponsePack()
         {
             return ProtoBufUtils.Serialize(_responsePack);
         }
