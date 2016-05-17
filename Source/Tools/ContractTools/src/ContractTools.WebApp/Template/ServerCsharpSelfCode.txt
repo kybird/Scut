@@ -4,13 +4,7 @@ using System.Collections.Generic;
 
 namespace ##Namespace##
 {
-##Request##
 
-
-##Response##
-
-	Request _requestPack;
-	Response _responsePack;
    
     /// <summary>
     /// ##Description##
@@ -18,6 +12,12 @@ namespace ##Namespace##
     /// <remarks>BaseStruct클래스를상속: 신분증명없는요청을허용;AuthorizeAction:신분증명이필요한요청</remarks>
     public class Action##ID## : ProtoAuthAction
     {
+##Request##
+##Response##
+
+	Request _requestPack;
+	Response _responsePack;
+
         public Action##ID##(ActionGetter actionGetter)
             : base((short)##ID##, actionGetter)
         {

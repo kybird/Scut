@@ -457,7 +457,7 @@ namespace ContractTools.WebApp.Base
 
             string space = GetSpaceIndent(2, 0);
             fieldBuilder.AppendLine();
-            fieldBuilder.Append(space);
+            //fieldBuilder.Append(space);
 
             foreach (var builder in classList)
             {
@@ -1662,6 +1662,8 @@ namespace ContractTools.WebApp.Base
         private static void BuildProtoBufMemberCode(StringBuilder memberBuilder, string spaceString, ParamInfoModel paramInfo, int idx)
         {
             string descp = paramInfo.Descption + paramInfo.Remark;
+            memberBuilder.AppendLine();
+            memberBuilder.Append(spaceString);
             memberBuilder.AppendLine("/// <summary>");
             memberBuilder.Append(spaceString);
             memberBuilder.AppendLine("/// " + descp.Replace("\r\n", ","));
