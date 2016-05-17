@@ -52,11 +52,7 @@ namespace ##Namespace##
 			return false;
         }
 
-		protected override bool IgnoreActionId
-		{
-			get { return true; }
-		}
-
+		
         /// <summary>
         /// business logic process
         /// </summary>
