@@ -1,6 +1,10 @@
+using ProtoBuf;
 using System;
 using System.Collections.Generic;
 ##RefNamespace##
+
+using ZyGames.Framework.Common.Serialization;
+using rolaweb.Script.CsScript.Action;
 
 namespace ##Namespace##
 {
@@ -15,8 +19,8 @@ namespace ##Namespace##
 ##Request##
 ##Response##
 
-	Request _requestPack;
-	Response _responsePack;
+	RequestPack _requestPack;
+	ResponsePack _responsePack;
 
         public Action##ID##(ActionGetter actionGetter)
             : base((short)##ID##, actionGetter)
@@ -41,7 +45,7 @@ namespace ##Namespace##
             byte[] data = (byte[])actionGetter.GetMessage();
 			if (data.Length >0)
 			{
-				_requestPack = ProtoBufUtils.Deserialize<Request>(data);
+				_requestPack = ProtoBufUtils.Deserialize<RequestPack>(data);
 
 				return true;
 			}

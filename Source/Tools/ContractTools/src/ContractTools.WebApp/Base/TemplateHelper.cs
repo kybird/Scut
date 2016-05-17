@@ -1645,7 +1645,7 @@ namespace ContractTools.WebApp.Base
             if (isClassMember)
             {
                 memberBuilder.AppendFormat("public {0} {1}",
-                    paramInfo.FieldType == FieldType.Password ? "string" : paramInfo.FieldType.ToString().ToLower(),
+                    paramInfo.FieldType == FieldType.Password ? "string" : paramInfo.FieldType == FieldType.DateTime ? paramInfo.FieldType.ToString(): paramInfo.FieldType.ToString().ToLower(),
                     paramInfo.Field);
                 memberBuilder.AppendLine(" { get; set; }");
             }
@@ -1672,9 +1672,19 @@ namespace ContractTools.WebApp.Base
             memberBuilder.Append(spaceString);
             memberBuilder.AppendFormat("[ProtoMember({0})]\n", idx);
             memberBuilder.Append(spaceString);
-            memberBuilder.AppendFormat("public {0} {1}",
-            paramInfo.FieldType == FieldType.Password ? "string" : paramInfo.FieldType.ToString().ToLower(),
-                    ToProtoMemberVarName(paramInfo.Field));
+
+            if(paramInfo.FieldType == FieldType.Password)
+            {
+                memberBuilder.AppendFormat("public string {0}", ToProtoMemberVarName(paramInfo.Field));
+            }
+            else if (paramInfo.FieldType == FieldType.DateTime)
+            {
+                memberBuilder.AppendFormat("public DateTime {0}", ToProtoMemberVarName(paramInfo.Field));
+            }
+            else
+            {
+                memberBuilder.AppendFormat("public {0} {1}", paramInfo.FieldType.ToString().ToLower(), ToProtoMemberVarName(paramInfo.Field));
+            }
             memberBuilder.AppendLine(";");
             
             memberBuilder.Append(spaceString);
