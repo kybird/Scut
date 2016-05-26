@@ -190,6 +190,7 @@ namespace ZyGames.Framework.Common
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
+        /// TODO: 전체에 URLENCODER 하는것이 아니라...값에만한다고???
         public static string BuildPostParams(IDictionary<string, string> parameters)
         {
             StringBuilder buffer = new StringBuilder();

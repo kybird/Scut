@@ -75,6 +75,7 @@ namespace AccountServer.Handler
                 data.Pwd = DecodePassword(data.Pwd);
                 watch2.Check("DecodePassword finish");
                 //快速登录
+                // RAPID LOGIN
                 RegType regType;
                 userId = SnsManager.LoginByDevice(data.Pid, data.Pwd, data.DeviceID, out regType, data.IsCustom);
                 watch2.Check("SQL finish");

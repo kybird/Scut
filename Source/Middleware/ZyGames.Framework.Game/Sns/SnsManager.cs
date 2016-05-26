@@ -30,7 +30,7 @@ using ZyGames.Framework.Common.Security;
 namespace ZyGames.Framework.Game.Sns
 {
     /// <summary>
-    /// 用户中心登录管理类
+    /// User center login manage Layer
     /// </summary>
     public class SnsManager
     {
@@ -46,11 +46,12 @@ namespace ZyGames.Framework.Game.Sns
         }
         /// <summary>
         /// 防多次点击产生多个账号与imei绑定
+        /// avoid fast click makes duplicated ID and IMEI binding
         /// </summary>
         private static ConcurrentDictionary<string, PassportExpired> imeiMap = new ConcurrentDictionary<string, PassportExpired>();
 
         /// <summary>
-        /// 获取随机GUID密码
+        /// get random guid password
         /// </summary>
         /// <returns></returns>
         public static string GetRandomPwd()
@@ -60,15 +61,18 @@ namespace ZyGames.Framework.Game.Sns
 
         /// <summary>
         /// 获取通行证
+        /// Get Passport
         /// </summary>
         /// <param name="imei">if null then get new pid</param>
         /// <param name="isNew"></param>
         /// <param name="encodeFunc"></param>
         /// <returns></returns>
+        /// 계정서버에서 Passport 명령 처리할떄 사용됨
+        /// isNew 가 어디서 튀어났는지 모르겠음....
         public static string[] GetRegPassport(string imei, bool isNew = false, Func<string, string> encodeFunc = null)
         {
             if (!SnsCenterUser.CheckDevice(imei))
-                throw (new Exception("禁止登入"));
+                throw (new Exception("Login Blocked"));
             var list = new List<string>();
             SnsUser user = new SnsCenterUser().GetUserByDeviceId(imei);
             string passportId = string.Empty;
@@ -79,6 +83,8 @@ namespace ZyGames.Framework.Game.Sns
                 if (user.RegType == RegType.Guest)
                 {
                     //客户端换包重新获取游客账号,密码需要重置 
+                    //client change packet, get new account and password
+                    // what does this mean!!?!?!?
                     string password = GetRandomPwd();
                     user.Password = encodeFunc != null ? encodeFunc(password) : password;
                     var sns = new SnsCenterUser(user.PassportId, password, imei);
@@ -94,8 +100,11 @@ namespace ZyGames.Framework.Game.Sns
             else
             {
                 PassportExpired passportExpired;
-                if (isNew || !imeiMap.TryGetValue(imei, out passportExpired))
+                imeiMap.TryGetValue(imei, out passportExpired);
+
+                if (isNew || passportExpired == null || (passportExpired != null && passportExpired.ExpiredTime　< DateTime.Now))
                 {
+                    
                     passportId = new SnsPassport().GetRegPassport();
                     if (!string.IsNullOrEmpty(imei))
                         imeiMap[imei] = new PassportExpired(passportId);
@@ -103,32 +112,37 @@ namespace ZyGames.Framework.Game.Sns
                 else
                 {
                     passportId = passportExpired.Pid;
-                    if (passportExpired.ExpiredTime < DateTime.Now)
+                }
+
+                // Check Expired
+                List<string> expiredMap;
+                if (imeiMap.Count > 100 && ((expiredMap = imeiMap.Where(t => t.Value.ExpiredTime < DateTime.Now).Select(t => t.Key).ToList()).Count > 10))
+                {
+                    foreach (var expired in expiredMap)
                     {
-                        //过期移除
-                        imeiMap.TryRemove(imei, out passportExpired);
-                    }
-                    //检查超出
-                    List<string> expiredMap;
-                    if (imeiMap.Count > 100 && ((expiredMap = imeiMap.Where(t => t.Value.ExpiredTime < DateTime.Now).Select(t => t.Key).ToList()).Count > 10))
-                    {
-                        foreach (var expired in expiredMap)
-                        {
-                            imeiMap.TryRemove(expired, out passportExpired);
-                        }
+                        imeiMap.TryRemove(expired, out passportExpired);
                     }
                 }
 
+                
+
                 string password = GetRandomPwd();
                 if (encodeFunc != null) password = encodeFunc(password);
+
+                Console.WriteLine(String.Format("PassportID:{0}", passportId));
                 list.Add(passportId);
                 list.Add(password);
+
             }
+
+            
+            
             return list.ToArray();
         }
 
         /// <summary>
         /// 注册
+        /// Register
         /// </summary>
         /// <param name="pid"></param>
         /// <param name="password"></param>
@@ -154,6 +168,7 @@ namespace ZyGames.Framework.Game.Sns
         /// <param name="imei"></param>
         /// <param name="openId"></param>
         /// <returns>0:失败, 1:成功 2:已绑定</returns>
+        /// <returns>0:failure , 1:success 2:already binding</returns>
         public static int RegisterWeixin(string pid, string password, string imei, string openId)
         {
             SnsCenterUser snsCenterUser = new SnsCenterUser(pid, password, imei);
@@ -261,27 +276,29 @@ namespace ZyGames.Framework.Game.Sns
         /// <param name="userType"></param>
         /// <param name="isCustom">use custom passport</param>
         /// <returns></returns>
+        /// 이함수로인해서 등록안하고 바로 로그인할수있게되있음
         public static long LoginByDevice(string user, string password, string imei, out RegType userType, bool isCustom = false)
         {
             if (!SnsCenterUser.CheckDevice(imei))
-                throw (new Exception("禁止登录"));
+                throw (new Exception("Blocked Login"));
             long userId = 0;
             try
             {
-                var snsCenterUser = new SnsCenterUser(user, password, imei);
+                var snsCenterUser = new SnsCenterUser(user, password, imei); // 이렇게하면 Guest 타입 SnsCenterUser.cs Line:174
                 var snsUser = snsCenterUser.GetUserInfo(user);
-                if (snsUser == null || snsUser.UserId <= 0)
+                if (snsUser == null || snsUser.UserId <= 0)   // 없는 유저....일경우
                 {
                     Guid gid;
-                    userType = Guid.TryParse(password, out gid) ? RegType.Guest : RegType.Normal;
+                    userType = Guid.TryParse(password, out gid) ? RegType.Guest : RegType.Normal; //Password 가 GUID 면.. GUEST 아니면 NORMAL
                     snsCenterUser.RegType = userType;
-                    userId = snsCenterUser.InsertSnsUser(isCustom);
+                    userId = snsCenterUser.InsertSnsUser(isCustom);  // here insert the user....
                     //过期移除
+                    // Remove Expired 
                     PassportExpired passportExpired;
                     bool result = string.IsNullOrEmpty(imei) ? imeiMap.TryRemove(user, out passportExpired) : imeiMap.TryRemove(imei, out passportExpired);
                     return userId;
                 }
-                userType = snsUser.RegType;
+                userType = snsUser.RegType;   // 있는 유저일경우..
                 if (snsCenterUser.ValidatePassport(snsUser))
                 {
                     return snsUser.UserId;
@@ -289,7 +306,7 @@ namespace ZyGames.Framework.Game.Sns
             }
             finally
             {
-                SnsCenterUser.AddLoginLog(imei, user);
+                SnsCenterUser.AddLoginLog(imei, user);   // 로그인 로그 남김.. TODO: 문제가있는지 현재 로그 남고있지 않음
             }
             return userId;
         }
@@ -307,6 +324,8 @@ namespace ZyGames.Framework.Game.Sns
 
         /// <summary>
         /// 通道商验证登录
+        /// 통도상 인증 등록
+        /// 퍼블리셔 인증 로그인
         /// </summary>
         /// <param name="retailId"></param>
         /// <param name="retailUser"></param>
@@ -320,10 +339,14 @@ namespace ZyGames.Framework.Game.Sns
             if (snsuser.UserId <= 0)
             {
                 //自动获取通行证
+                // 자동으로 Passport 얻기
                 SnsPassport passport = new SnsPassport();
                 string pid = passport.GetRegPassport();
                 string pwd = GetRandomPwd();
                 //modify login of retail bug.
+
+                // 내디비에 내가생성한 PID 와 PWD 를 저장하고
+                // 거기에 퍼블리셔일련번호와 퍼블리셔가 발급한 아이디를 저장한다.
                 snsCenterUser = new SnsCenterUser(pid, pwd, imei) { RetailID = retailId, RetailUser = retailUser };
                 result[0] = snsCenterUser.InsertSnsUser(false).ToString();
                 result[1] = pid;
@@ -335,7 +358,7 @@ namespace ZyGames.Framework.Game.Sns
         }
 
         /// <summary>
-        /// 修改密码
+        /// Change Password
         /// </summary>
         /// <param name="user"></param>
         /// <param name="password"></param>
@@ -348,7 +371,7 @@ namespace ZyGames.Framework.Game.Sns
         }
 
         /// <summary>
-        /// 通行证检查
+        /// Check Passport
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
@@ -359,7 +382,7 @@ namespace ZyGames.Framework.Game.Sns
         }
 
         /// <summary>
-        /// 检查通行证密码
+        /// Check Passport and Password
         /// </summary>
         /// <param name="pid"></param>
         /// <param name="password"></param>
@@ -385,7 +408,7 @@ namespace ZyGames.Framework.Game.Sns
         }
 
         /// <summary>
-        /// 获取用户信息
+        /// Get User Info
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>
@@ -396,3 +419,4 @@ namespace ZyGames.Framework.Game.Sns
         }
     }
 }
+        

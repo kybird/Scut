@@ -73,6 +73,7 @@ namespace ZyGames.Framework.Game.Sns
         /// <summary>
         /// Md5 key
         /// </summary>
+        /// TODO: 이건 쓰지도 않네..
         private const string PasswordMd5Key = "1736e1c9-6f40-48b6-8210-da39cf333784";
         /// <summary>
         /// Passwords the encrypt md5.
@@ -86,6 +87,7 @@ namespace ZyGames.Framework.Game.Sns
 
         /// <summary>
         /// 官网渠道ID
+        /// Official Channel ID
         /// </summary>
         private const string SysetmRetailID = "0000";
         private long _userid;
