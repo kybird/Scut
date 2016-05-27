@@ -383,7 +383,7 @@ namespace ContractTools.WebApp.Base
             var classStack = new Stack<StringBuilder>();
             var idxStack = new Stack<int>();
             StringBuilder respPackBuilder = new StringBuilder();
-            BuildClassCode(respPackBuilder, GetSpaceIndent(2, 0), "ResponsePack", "ResponsePack");
+            BuildProtoBufClassCode(respPackBuilder, GetSpaceIndent(2, 0), "Protobuf", "ResponsePack");
 
             foreach (var paramInfo in list)
             {

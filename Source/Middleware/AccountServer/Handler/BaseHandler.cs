@@ -90,7 +90,8 @@ namespace AccountServer.Handler
                 UserId = userId,
                 PassportId = passportId,
                 UserType =  userType,
-                ExpireTime = DateTime.Now.AddDays(1)
+                //ExpireTime = DateTime.Now.AddDays(1)
+                ExpireTime = DateTime.Now.AddSeconds(10)
             };
             HandlerManager.SaveToken(userToken.Token, userToken);
             return new LoginToken()
