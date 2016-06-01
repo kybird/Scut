@@ -354,7 +354,7 @@ namespace ZyGames.Framework.RPC.Sockets
                 switch (ioEventArgs.LastOperation)
                 {
                     case SocketAsyncOperation.Receive:
-                        ProcessReceive(ioEventArgs);
+                         ProcessReceive(ioEventArgs);
                         break;
                     case SocketAsyncOperation.Send:
                         ProcessSend(ioEventArgs);

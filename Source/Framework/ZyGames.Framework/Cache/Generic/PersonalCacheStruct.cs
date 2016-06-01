@@ -741,9 +741,10 @@ namespace ZyGames.Framework.Cache.Generic
 
         /// <summary>
         /// 从Redis加载所有缓存
+        /// load all cache from redis
         /// </summary>
         /// <param name="match"></param>
-        /// <param name="isReplace"></param>
+        /// <param name="isReplace"> whether replace or not if there is already exist</param>
         public void LoadFrom(Predicate<T> match, bool isReplace = false)
         {
             string redisKey = CreateRedisKey();

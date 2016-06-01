@@ -73,6 +73,7 @@ namespace ZyGames.Framework.RPC.Sockets
         /// <param name="buffer"></param>
         /// <param name="messageList"></param>
         /// <returns></returns>
+        /// QA: 여기서 클라이언트에서 붙였던 헤더 4바이트를 날려버린다.
         public override bool TryReadMeaage(DataToken dataToken, byte[] buffer, out List<DataMeaage> messageList)
         {
             messageList = new List<DataMeaage>();

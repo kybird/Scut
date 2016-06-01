@@ -593,7 +593,9 @@ namespace ZyGames.Framework.Cache.Generic
                 }
             }
             
-            Console.WriteLine(string.Format("Add Data Failed because key is already exist key:{0}, Value:{1}", key, typeof(T)));
+            // TODO: ...레디스에서 읽어오고선 메모리에 있다고 UPDATE 를안한다.
+            // 애시당초 레디스에 가지를 말던가.... 뭐일까?
+            //Console.WriteLine(string.Format("Add Data Failed because key is already exist key:{0}, Value:{1}", key, typeof(T)));
             return false;
         }
         /// <summary>

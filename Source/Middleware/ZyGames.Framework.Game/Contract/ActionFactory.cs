@@ -55,7 +55,7 @@ namespace ZyGames.Framework.Game.Contract
         public static int ErrorCode = 10000;
 
         /// <summary>
-        /// 设置忽略认证Action
+        /// ignore authorize packet process in LUA,Python
         /// </summary>
         /// <param name="actionIds"></param>
         public static void SetActionIgnoreAuthorize(params int[] actionIds)
