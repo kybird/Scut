@@ -488,6 +488,10 @@ namespace ZyGames.Framework.Game.Contract
                 }
                 httpListener.BeginGetContext(OnHttpRequest, httpListener);
             }
+
+            // QA: 이게 무얼까...
+            // 음....event 인데...람다를 넣었네.
+            // 어디에다가 무슨데이터를 보내는거지...
             EntitySyncManger.SendHandle += (userId, data) =>
             {
                 GameSession session = GameSession.Get(userId);
