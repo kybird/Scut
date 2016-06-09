@@ -29,6 +29,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ZyGames.Framework.Common;
 using ZyGames.Framework.Common.Log;
+using System.Net;
 
 namespace ZyGames.Framework.RPC.Sockets
 {
@@ -236,13 +237,32 @@ namespace ZyGames.Framework.RPC.Sockets
         /// </summary>
         public void StartListen()
         {
+#if true
+            if (!Socket.OSSupportsIPv6)
+            {
+                Console.Error.WriteLine("Server machine does not support ipv6");
+            }
+            // 
+            listenSocket = new Socket(AddressFamily.InterNetworkV6, SocketType.Stream, ProtocolType.Tcp);
+            listenSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+            listenSocket.SetSocketOption(SocketOptionLevel.IPv6, SocketOptionName.IPv6Only, 0);
+            listenSocket.Bind(new IPEndPoint(IPAddress.IPv6Any, socketSettings.LocalEndPoint.Port));
+            listenSocket.Listen(socketSettings.Backlog);
+            _isStart = true;
+            requestHandler.Bind(this);
+            PostAccept();
+#else
             listenSocket = new Socket(this.socketSettings.LocalEndPoint.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
             listenSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+            
             listenSocket.Bind(this.socketSettings.LocalEndPoint);
             listenSocket.Listen(socketSettings.Backlog);
             _isStart = true;
             requestHandler.Bind(this);
             PostAccept();
+
+#endif
+
         }
 
         private void PostAccept()
