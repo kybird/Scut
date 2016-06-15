@@ -494,7 +494,7 @@ namespace ZyGames.Framework.Cache.Generic
             {
                 DataContainer.ReLoad();
             }
-            TraceLog.ReleaseWrite("ReLoad {0} end", DataContainer.RootKey);
+            //TraceLog.ReleaseWrite("ReLoad {0} end", DataContainer.RootKey);
         }
 
         /// <summary>

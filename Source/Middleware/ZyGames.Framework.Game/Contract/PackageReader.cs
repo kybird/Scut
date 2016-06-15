@@ -206,7 +206,7 @@ namespace ZyGames.Framework.Game.Contract
             }
             if (!str.Contains("="))
             {
-                TraceLog.ReleaseWriteDebug("Parse request error:{0}", paramString);
+                TraceLog.ReleaseWriteDebug("This is not HTTP request:{0}", paramString);
                 return;
             }
 

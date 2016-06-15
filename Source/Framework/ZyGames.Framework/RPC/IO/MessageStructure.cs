@@ -504,6 +504,20 @@ namespace ZyGames.Framework.RPC.IO
             }
         }
 
+        public void DeCompressGzip()
+        {
+            if(CheckGzipBuffer())
+            {
+                byte[] gzipData = PopBuffer();
+                //head.GzipLength = gzipData.Length;
+                //gzip格式500+gzip( 1000+ XXXXXX)
+                byte[] deZipData = GzipUtils.DeCompress(gzipData, 0, gzipData.Length);
+                WriteByte(deZipData);
+                Reset();
+            }
+            
+        }
+
         /// <summary>
         /// To Hex(16) string
         /// </summary>

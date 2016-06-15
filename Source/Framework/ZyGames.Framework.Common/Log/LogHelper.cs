@@ -169,7 +169,7 @@ namespace ZyGames.Framework.Common.Log
             HttpContext current = HttpContext.Current;
             try
             {
-                stringBuilder.AppendFormat("Time:{0}-{1}\r\n", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), info);
+                stringBuilder.AppendFormat("Time:{0}-{1}\n", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff"), info);
                 if (current != null)
                 {
                     HttpRequest request = null;
@@ -184,24 +184,24 @@ namespace ZyGames.Framework.Common.Log
 
                     if (request != null)
                     {
-                        stringBuilder.AppendFormat("Url:{0}\r\n", current.Request.Url);
+                        stringBuilder.AppendFormat("Url:{0}\n", current.Request.Url);
                         if (null != current.Request.UrlReferrer)
                         {
-                            stringBuilder.AppendFormat("UrlReferrer:{0}\r\n", current.Request.UrlReferrer);
+                            stringBuilder.AppendFormat("UrlReferrer:{0}\n", current.Request.UrlReferrer);
                         }
-                        stringBuilder.AppendFormat("UserHostAddress:{0}\r\n", current.Request.UserHostAddress);
+                        stringBuilder.AppendFormat("UserHostAddress:{0}\n", current.Request.UserHostAddress);
                     }
                 }
                 if (ex != null)
                 {
-                    stringBuilder.AppendFormat("Exception:{0}\r\n", ex.ToString());
+                    stringBuilder.AppendFormat("Exception:{0}\n", ex.ToString());
                 }
             }
             catch (Exception error)
             {
-                stringBuilder.AppendLine(info + ", Exception:\r\n" + error);
+                stringBuilder.AppendLine(info + ", Exception:\n" + error);
             }
-            stringBuilder.AppendLine();
+            //stringBuilder.AppendLine();
             return stringBuilder.ToString();
         }
     }

@@ -55,8 +55,14 @@
     <Reference Include="protobuf-net">
       <HintPath>..\..\Framework\Lib\protobuf-net.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack.Interfaces">
+      <HintPath>..\..\Framework\Lib\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
     <Reference Include="ServiceStack.Redis">
       <HintPath>..\..\Framework\Lib\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\..\Framework\Lib\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
