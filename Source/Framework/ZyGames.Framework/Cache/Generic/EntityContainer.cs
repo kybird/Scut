@@ -1213,7 +1213,9 @@ namespace ZyGames.Framework.Cache.Generic
                         //Not trigger event notify
                         entityData.Dispose();
                     }
-                    return true;
+
+                    // BUG: removecache can't delete everything when there is only one element
+                    //return true;
                 }
                 if (items.Count == 0 && Container.TryRemove(groupKey, out itemSet))
                 {
