@@ -94,7 +94,8 @@ namespace ZyGames.Framework.Game.Service
         /// <summary>
         /// 当前游戏会话
         /// </summary>
-        public GameSession Current { get; internal set; }
+        /// TODO: ProtoLoginAction 을 추가해야할까? 보호수준을 포기해야할까
+        public GameSession Current { get; /*internal*/ set; }
 
         /// <summary>
         /// 
