@@ -574,7 +574,7 @@ namespace ZyGames.Framework.Redis
                     return objPinReply != null && objPinReply.Status == IPStatus.Success;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }

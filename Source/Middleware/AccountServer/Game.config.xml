@@ -2,9 +2,9 @@
 <GameConfig>
   <!--渠道登录处理提供类配置-->
   <login>
-    <add id="0001" type="Login91sdk" args="RetailID,RetailUser,RetailToken" />
+    <!--<add id="0001" type="Login91sdk" args="RetailID,RetailUser,RetailToken" />
     <add id="0036" type="LoginUC" args="RetailID,RetailToken,MobileType" />
-    <!--<add id="0037" type="LoginDanLe" args="RetailID,RetailUser,Pwd,Pid" />-->
+    --><!--<add id="0037" type="LoginDanLe" args="RetailID,RetailUser,Pwd,Pid" />--><!--
     <add id="0037" type="LoginDanLeV2" args="RetailID,RetailUser,RetailToken" />
     <add id="0021" type="Login360_V2" args="RetailID,RetailUser,Pid,RetailToken"/>
     <add id="0070" type="LoginMIUI" args="RetailID,RetailUser,RetailToken"/>
@@ -12,7 +12,10 @@
     <add id="0017" type="LoginMMY" args="RetailID,RetailUser,RetailToken" />
     <add id="9999" type="LoginAnySdk" args="RetailID,RetailUser,RetailToken,Pid" />
     <add id="0034" type="LoginMeiZu" args="RetailID,RetailUser,RetailToken" />
-    <add id="0025" type="LoginND" args="RetailID,RetailUser" />
+    <add id="0025" type="LoginND" args="RetailID,RetailUser" />-->
+    <add id="88881" type="AccountServerLogin" args="Pwd, Pid"/>
+    <add id="88882" type="LoginGoogle" args="RetailID, RetailUser"/>
+    <add id="88883" type="LoginFacebook" args="RetailID, RetailUser"/>
   </login>
 
   <!--渠道商提供的Sdk配置-->

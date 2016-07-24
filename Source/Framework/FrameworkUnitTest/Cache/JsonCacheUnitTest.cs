@@ -33,8 +33,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using FrameworkUnitTest.Cache.Model;
-using IronPython.Modules;
-using IronPython.Runtime;
+//using IronPython.Modules;
+//using IronPython.Runtime;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ServiceStack.Redis;
 using ZyGames.Framework.Cache.Generic;
@@ -70,7 +70,7 @@ namespace FrameworkUnitTest.Cache
         [TestMethod]
         public void RedisConnect()
         {
-            Assert.IsTrue(RedisConnectionPool.Ping("127.0.0.1"));
+            Assert.IsTrue(RedisConnectionPool.Ping("10.99.209.153"));
             Assert.IsTrue(RedisConnectionPool.CheckConnect());
         }
 

@@ -147,8 +147,11 @@ namespace ZyGames.Framework.Game.Sns
         /// 
         /// </summary>
         /// <returns></returns>
+        /// 
+        string oldtoken = "";
         public virtual bool CheckLogin()
         {
+            TraceLog.WriteError("Check Token:{0}", Token);
             var query = new Dictionary<string, string>();
             query["Handler"] = "Validate";
             query["Token"] = Token;
@@ -253,10 +256,12 @@ namespace ZyGames.Framework.Game.Sns
             UserToken userToken = null;
             if ((userToken = HandlerManager.GetUserToken(Token, _host, _db)) == null)
             {
+                TraceLog.WriteDebug("Can't find Token");
                 return false;
             }
             if (userToken.ExpireTime < DateTime.Now)
             {
+                TraceLog.WriteDebug("Token Expired");
                 return false;
             }
             PassportID = userToken.PassportId;

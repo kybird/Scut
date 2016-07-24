@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProtoBuf;
-using ServiceStack.Common.Extensions;
+//using ServiceStack.Common.Extensions;
 using ZyGames.Framework.Model;
 
 namespace FrameworkUnitTest.Cache.Model

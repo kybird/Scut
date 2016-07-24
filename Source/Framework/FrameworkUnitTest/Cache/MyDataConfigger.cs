@@ -39,13 +39,13 @@ namespace FrameworkUnitTest.Cache
         public const string DbKey = "Conn";
         protected override void LoadConfigData()
         {
-            this.AddNodeData(new RedisSection() { DbIndex = 10, Host = "127.0.0.1:6379", ClientVersion = RedisStorageVersion.HashMutilKeyMap });
+            this.AddNodeData(new RedisSection() { DbIndex = 10, Host = "10.99.209.153:6379", ClientVersion = RedisStorageVersion.HashMutilKeyMap });
             this.AddNodeData(new MessageQueueSection() { SqlSyncInterval = 1000 });
             this.AddNodeData(new CacheSection() { IsStorageToDb = true });
             this.AddNodeData(new EntitySection() { EnableModifyTimeField = true });
 
 #if IS_MYSQ
-            this.AddNodeData(new ConnectionSection(DbKey, "MySqlDataProvider", "Data Source=localhost;Database=FrameTestDB;Uid=root;Pwd=123456;"));
+            this.AddNodeData(new ConnectionSection(DbKey, "MySqlDataProvider", "Data Source=10.99.209.84;Database=FrameTestDB;Uid=dbuser;Pwd=celebv2;charset=utf8"));
 #else
                 this.AddNodeData(new ConnectionSection(DbKey, "SqlDataProvider", "Data Source=localhost;Database=FrameTestDB;Uid=sa;Pwd=123;"));
 #endif

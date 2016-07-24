@@ -25,6 +25,7 @@ using System;
 using AccountServer.Handler.Data;
 using AccountServer.Lang;
 using ZyGames.Framework.Game.Sns.Service;
+using ZyGames.Framework.Common.Log;
 
 namespace AccountServer.Handler
 {
@@ -42,6 +43,7 @@ namespace AccountServer.Handler
             }
             if (userToken.ExpireTime < DateTime.Now)
             {
+                TraceLog.WriteError("Token:{2}, ExpireTime:{0} NOW:{1}", userToken.ExpireTime, DateTime.Now, userToken.Token);
                 throw new HandlerException(StateCode.TokenExpired, StateDescription.TokenExpired);
             }
             return new LoginToken()

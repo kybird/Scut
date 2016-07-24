@@ -23,7 +23,15 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZyGames.Framework4.5", "..\Framework\ZyGames.Framework\ZyGames.Framework4.5.csproj", "{416E2E00-4064-4D7A-87A2-A649FF120274}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyServer4.5", "ProxyServer\ProxyServer4.5.csproj", "{D0A25FF9-EDE6-4654-80B5-FB190C233B6A}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountServerConsole", "AccountServer\AccountServerConsole.csproj", "{E6364DB8-8867-41C7-8816-2ADD1ADDA968}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{43F2EC35-6870-4574-B76C-F94A03E11529}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

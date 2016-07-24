@@ -139,6 +139,12 @@ namespace ZyGames.Framework.Game.Contract
                                 continue;
                             }
                         }
+                        // TODO: DEBUG
+                        if (userId == 0)
+                        {
+                            throw new Exception();
+                        }
+
                         _userHash[userId] = session.KeyCode;
                         session.User = user;
                     }
@@ -777,6 +783,13 @@ namespace ZyGames.Framework.Game.Contract
             if (User != null)
             {
                 //update userid with sid.
+
+                // TODO: DEBUG
+                if (UserId == 0)
+                {
+                    throw new Exception();
+                }
+
                 _userHash[UserId] = KeyCode;
             }
         }
@@ -786,6 +799,11 @@ namespace ZyGames.Framework.Game.Contract
             if (User != null)
             {
                 //update userid with sid.
+                // TODO: DEBUG
+                if (UserId == 0)
+                {
+                    throw new Exception();
+                }
                 _userHash[UserId] = KeyCode;
             }
         }
@@ -844,6 +862,7 @@ namespace ZyGames.Framework.Game.Contract
                     }
                 }
             }
+            
             _userHash[userId] = KeyCode;
             User = user;
             OnChangedSave(this);
