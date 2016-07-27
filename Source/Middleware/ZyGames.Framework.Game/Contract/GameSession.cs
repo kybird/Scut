@@ -130,6 +130,7 @@ namespace ZyGames.Framework.Game.Contract
                             (oldsession = Get(sid)) != null)
                         {
                             //防止先后问题
+                            // avoid sequence problem
                             if (session.IsReplaced) continue;
 
                             if (oldsession.IsReplaced || oldsession.LastActivityTime < session.LastActivityTime)
