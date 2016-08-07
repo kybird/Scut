@@ -199,6 +199,10 @@ namespace ZyGames.Framework.Game.Contract
                 {
                     return;
                 }
+
+                TraceLog.WriteDebug("DataReceive SessionID:{0}", session.SessionId);
+                TraceLog.WriteDebug("DataReceive Session User ID:{0}", session.UserId);
+
                 package.Bind(session);
                 ProcessPackage(package, session).Wait();
             }
