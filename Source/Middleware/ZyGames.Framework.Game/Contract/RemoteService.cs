@@ -264,27 +264,6 @@ namespace ZyGames.Framework.Game.Contract
             _client.Send(post);
         }
 
-        public void SyncCall(string routePath, RequestParam param, Action<RemotePackage> callback)
-        {
-            _msgId++;
-            param["MsgId"] = _msgId;
-            param["route"] = routePath;
-            param["Sid"] = _sessionId;
-            param["Uid"] = _userId;
-            param["ActionId"] = 0;
-            param["ssid"] = _proxySessionId;
-            param["isproxy"] = true;
-            param["proxyId"] = _proxyId;
-            string post = string.Format("d={0}", HttpUtility.UrlEncode(param.ToPostString()));
-            if (_client.IsSocket)
-            {
-                post = "?" + post;
-            }
-            var responsePack = new RemotePackage { MsgId = _msgId, RouteName = routePath };
-            responsePack.Callback += callback;
-            PutToWaitQueue(responsePack);
-            _client.Send(post);
-        }
 
 
         private void PutToWaitQueue(RemotePackage package)

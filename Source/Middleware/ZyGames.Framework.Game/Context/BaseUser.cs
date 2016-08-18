@@ -55,6 +55,7 @@ namespace ZyGames.Framework.Game.Context
         /// Gets the user data.
         /// </summary>
         /// <value>The user data.</value>
+        [Obsolete("no use")]
         public ContextCacheSet<CacheItem> UserData
         {
             get
@@ -86,7 +87,7 @@ namespace ZyGames.Framework.Game.Context
         /// 
         /// </summary>
         /// <returns></returns>
-        public abstract string GetNickName();
+        //public abstract string GetNickName();
         /// <summary>
         /// 
         /// </summary>
@@ -96,6 +97,6 @@ namespace ZyGames.Framework.Game.Context
         /// 
         /// </summary>
         /// <returns></returns>
-        public abstract string GetRetailId();
+        //public abstract string GetRetailId();
     }
 }

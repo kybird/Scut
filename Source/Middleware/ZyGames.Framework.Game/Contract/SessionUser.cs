@@ -90,12 +90,12 @@ namespace ZyGames.Framework.Game.Contract
         [ProtoMember(5)]
         public TimeSpan OnlineInterval { get; set; }
 
-        [ProtoMember(6)]
-        public Int64 RoleId
-        {
-            get;
-            set;
-        }
+        //[ProtoMember(6)]
+        //public Int64 RoleId
+        //{
+        //    get;
+        //    set;
+        //}
 
         /// <summary>
         /// 被替换掉
@@ -112,15 +112,15 @@ namespace ZyGames.Framework.Game.Contract
             return UserId;
         }
 
-        public Int64 GetRoleId()
-        {
-            return RoleId;
-        }
+        //public Int64 GetRoleId()
+        //{
+        //    return RoleId;
+        //}
 
-        public void SetRoleId(Int64 roleID)
-        {
-            RoleId = roleID;
-        }
+        //public void SetRoleId(Int64 roleID)
+        //{
+        //    RoleId = roleID;
+        //}
 
         /// <summary>
         /// 
