@@ -307,6 +307,18 @@ namespace ZyGames.Framework.Game.Runtime
         /// </summary>
         public string AccountServerUrl { get; set; }
 
+
+        /// <summary>
+        /// Center Server's url
+        /// TODO: 필요할때마다 프레임워크에 추가해야된다. Language 처럼 밖으로 뺄수없을까....
+        /// 예> 어카운트, 센터 두개나 추가됨..
+        /// 스크립트 단으로 빼는게 좋을것 같은데.
+        /// </summary>
+        public string CenterServerUrl { get; set; }
+
+
+       
+
         /// <summary>
         /// local ip
         /// </summary>

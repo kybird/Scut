@@ -70,6 +70,7 @@ namespace ZyGames.Framework.Game.Config
             DecodeFuncTypeName = ConfigUtils.GetSetting("Game.Script.DecodeFunc.TypeName", "");
             RemoteTypeName = ConfigUtils.GetSetting("Game.Remote.Script.TypeName", "Game.Script.Remote.{0}");
             AccountServerUrl = ConfigUtils.GetSetting("AccountServerUrl", "");
+            CenterServerUrl = ConfigUtils.GetSetting("CenterServerUrl", "");
         }
 
         /// <summary>
@@ -142,6 +143,10 @@ namespace ZyGames.Framework.Game.Config
         /// </summary>
         public string AccountServerUrl { get; set; }
 
+        /// <summary>
+        /// Center Server Address
+        /// </summary>
+        public string CenterServerUrl { get; set; }
 
     }
 }
