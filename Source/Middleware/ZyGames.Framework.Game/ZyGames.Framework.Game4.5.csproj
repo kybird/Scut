@@ -207,13 +207,11 @@
     <Compile Include="Service\SocketGameResponse.cs" />
     <Compile Include="Sns\AbstractLogin.cs" />
     <Compile Include="Sns\AccountServerLogin.cs" />
-    <Compile Include="Sns\LineGame\LGSDK.cs" />
     <Compile Include="Sns\LoginAnySdk.cs" />
     <Compile Include="Sns\LoginDanLeV2.cs" />
     <Compile Include="Sns\LoginFeiliu.cs" />
     <Compile Include="Sns\LoginGFan.cs" />
     <Compile Include="Sns\Login360_V2.cs" />
-    <Compile Include="Sns\LoginLG.cs" />
     <Compile Include="Sns\LoginMeiZu.cs" />
     <Compile Include="Sns\LoginMIUI.cs" />
     <Compile Include="Sns\LoginND.cs" />
@@ -275,6 +273,9 @@
       <Project>{416e2e00-4064-4d7a-87a2-a649ff120274}</Project>
       <Name>ZyGames.Framework4.5</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Sns\LineGame\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
