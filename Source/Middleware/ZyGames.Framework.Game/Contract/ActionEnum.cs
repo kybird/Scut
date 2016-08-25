@@ -23,7 +23,11 @@ THE SOFTWARE.
 ****************************************************************************/
 namespace ZyGames.Framework.Game.Contract
 {
-    internal enum ActionEnum
+    // NOTE:
+    // for implement Server2Server protocol
+    // after stable implement consider merge into framework
+    //internal enum ActionEnum
+    public enum ActionEnum
     {
         /// <summary>
         /// 心跳 1

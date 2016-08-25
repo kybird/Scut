@@ -139,6 +139,7 @@ namespace ZyGames.Framework.Game.Runtime
             ScriptTypeName = appServer.ScriptTypeName;
             RemoteTypeName = appServer.RemoteTypeName;
             AccountServerUrl = appServer.AccountServerUrl;
+            CenterServerUrl = appServer.CenterServerUrl;
 
             var protocol = GetProtocolSection();
             ProductSignKey = protocol.SignKey;
